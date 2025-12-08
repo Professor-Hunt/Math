@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson M1.2: Algebraic Manipulation and Factoring | PhD Qualifying Exam Prep</title>
+    
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f4c75;
+            --highlight: #3282b8;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --bg: #fdfefe;
+            --bg-alt: #f8f9fa;
+            --border: #dfe6e9;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --code-bg: #2d3436;
+            --code-text: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', 'Crimson Text', Georgia, serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 18px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin: -3rem -2rem 3rem -2rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .lesson-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .lesson-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lesson-meta-item::before {
+            content: "●";
+            color: var(--highlight);
+        }
+
+        /* Navigation */
+        .toc {
+            background: var(--bg-alt);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .toc li {
+            padding: 0.4rem 0;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--highlight);
+            padding-left: 0.5rem;
+        }
+
+        /* Content boxes */
+        .info-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fdcb6e15 0%, #e1705515 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box::before {
+            content: "⚠️ ";
+            font-size: 1.2em;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #00b89415 0%, #00cec915 100%);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: var(--bg-alt);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Math */
+        .katex {
+            font-size: 1.1em;
+        }
+
+        .katex-display {
+            margin: 2rem 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        /* Problem sections */
+        .problem {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .problem:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .problem-header {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-difficulty {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .difficulty-basic {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+
+        .difficulty-intermediate {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .difficulty-exam {
+            background: #d63031;
+            color: white;
+        }
+
+        .solution {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border);
+        }
+
+        .solution-header {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        code {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+        }
+
+        /* Summary section */
+        .summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .summary h2 {
+            color: white;
+            border-bottom: 3px solid var(--highlight);
+            margin-top: 0;
+        }
+
+        .summary h3 {
+            color: var(--highlight);
+        }
+
+        .summary ul {
+            margin-left: 1.5rem;
+        }
+
+        /* Footer */
+        .lesson-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .lesson-header {
+                padding: 3rem 1rem;
+                margin: -2rem -1rem 2rem -1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Link styles */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover {
+            border-bottom-color: var(--highlight);
+        }
+
+        /* Strong emphasis */
+        strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* Section divider */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Pro:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1>Lesson M1.2: Algebraic Manipulation and Factoring</h1>
+            <div class="lesson-meta">
+                <div class="lesson-meta-item">Module M1: Foundations</div>
+                <div class="lesson-meta-item">Prerequisites: Lesson M1.1</div>
+                <div class="lesson-meta-item">Duration: ~3 hours</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>Learning Objectives</h3>
+            <ul>
+                <li>Perform polynomial arithmetic fluently (addition, subtraction, multiplication, division)</li>
+                <li>Apply all standard factoring techniques systematically</li>
+                <li>Simplify rational expressions and complex fractions</li>
+                <li>Rationalize denominators (including conjugates)</li>
+                <li>Recognize algebraic structures that appear in calculus and analysis</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <h3>Contents</h3>
+            <ul>
+                <li><a href="#section-1">1. Polynomial Arithmetic</a></li>
+                <li><a href="#section-2">2. Factoring Techniques</a></li>
+                <li><a href="#section-3">3. Rational Expressions</a></li>
+                <li><a href="#section-4">4. Rationalizing Denominators</a></li>
+                <li><a href="#section-5">Practice Problems</a></li>
+                <li><a href="#section-6">Solutions</a></li>
+            </ul>
+        </div>
+
+        <h2 id="section-1">1. Polynomial Arithmetic</h2>
+        
+        <p>A <strong>polynomial</strong> in variable <em>x</em> is an expression of the form:</p>
+
+        <p>$$p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$$</p>
+
+        <p>where \(a_0, a_1, \ldots, a_n\) are real coefficients and \(n\) is a non-negative integer (the <strong>degree</strong> if \(a_n \neq 0\)).</p>
+
+        <h3>1.1 Addition and Subtraction</h3>
+
+        <p><strong>Rule:</strong> Combine like terms (same power of x).</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> \((3x^3 - 2x + 5) + (x^3 + 4x^2 - 7)\)</p>
+            <p>Group by degree:</p>
+            <ul>
+                <li>\(x^3\) terms: \(3x^3 + x^3 = 4x^3\)</li>
+                <li>\(x^2\) terms: \(0 + 4x^2 = 4x^2\)</li>
+                <li>\(x\) terms: \(-2x + 0 = -2x\)</li>
+                <li>Constants: \(5 + (-7) = -2\)</li>
+            </ul>
+            <p><strong>Result:</strong> \(4x^3 + 4x^2 - 2x - 2\)</p>
+        </div>
+
+        <h3>1.2 Multiplication</h3>
+
+        <p><strong>Rule:</strong> Use the distributive property (every term times every term), then combine like terms.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> \((2x - 3)(x^2 + 4x - 1)\)</p>
+            <p>Distribute each term from the first factor:</p>
+            <ul>
+                <li>\(2x \cdot (x^2 + 4x - 1) = 2x^3 + 8x^2 - 2x\)</li>
+                <li>\(-3 \cdot (x^2 + 4x - 1) = -3x^2 - 12x + 3\)</li>
+            </ul>
+            <p>Combine: \(2x^3 + 8x^2 - 3x^2 - 2x - 12x + 3 = 2x^3 + 5x^2 - 14x + 3\)</p>
+        </div>
+
+        <h3>1.3 Special Products</h3>
+
+        <p>Memorize these — they appear constantly:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Pattern</th>
+                    <th>Formula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Square of a sum</strong></td>
+                    <td>\((a + b)^2 = a^2 + 2ab + b^2\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Square of a difference</strong></td>
+                    <td>\((a - b)^2 = a^2 - 2ab + b^2\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Difference of squares</strong></td>
+                    <td>\((a + b)(a - b) = a^2 - b^2\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cube of a sum</strong></td>
+                    <td>\((a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cube of a difference</strong></td>
+                    <td>\((a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3\)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Expand \((x + 2)^3\)</p>
+            <p>Using the formula with \(a = x\), \(b = 2\):</p>
+            <p>\((x + 2)^3 = x^3 + 3(x^2)(2) + 3(x)(4) + 8 = x^3 + 6x^2 + 12x + 8\)</p>
+        </div>
+
+        <h3>1.4 Polynomial Division</h3>
+
+        <p><strong>Long Division:</strong> Used when dividing by polynomials of degree ≥ 2 or when you need both quotient and remainder.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Divide \(x^3 - 2x^2 + 4\) by \(x - 2\)</p>
+            <p>$$\frac{x^3 - 2x^2 + 4}{x - 2}$$</p>
+            <p>Step 1: \(x^3 \div x = x^2\). Multiply: \(x^2(x-2) = x^3 - 2x^2\). Subtract: \(0\).</p>
+            <p>Step 2: Bring down: \(0x\). \(0 \div x = 0\). Multiply: \(0\). Subtract: \(0\).</p>
+            <p>Step 3: Bring down: \(4\). \(4 \div x = ?\) — can't divide evenly.</p>
+            <p><strong>Result:</strong> \(x^2 + \frac{4}{x-2}\)</p>
+        </div>
+
+        <p><strong>Synthetic Division:</strong> A shortcut when dividing by \((x - c)\).</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Divide \(x^3 - 2x^2 + 4\) by \(x - 2\) using synthetic division:</p>
+            <pre>
+2 │  1   -2    0    4
+  │       2    0    0
+  ─────────────────────
+     1    0    0    4
+            </pre>
+            <p>Quotient: \(x^2 + 0x + 0 = x^2\), Remainder: \(4\)</p>
+            <p>So: \(\frac{x^3 - 2x^2 + 4}{x - 2} = x^2 + \frac{4}{x-2}\)</p>
+        </div>
+
+        <h2 id="section-2">2. Factoring Techniques</h2>
+
+        <p>Factoring is the reverse of multiplication — expressing a polynomial as a product of simpler polynomials. This skill is essential for simplifying expressions, solving equations, and computing limits.</p>
+
+        <h3>2.1 Strategy: Always Start with GCF</h3>
+
+        <p><strong>Greatest Common Factor (GCF):</strong> Factor out the largest expression that divides every term.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(6x^4 - 9x^3 + 15x^2\)</p>
+            <p>GCF of coefficients: \(\gcd(6, 9, 15) = 3\)<br>
+            GCF of variables: \(x^2\) (lowest power)</p>
+            <p>Factor: \(3x^2(2x^2 - 3x + 5)\)</p>
+        </div>
+
+        <h3>2.2 Factoring by Grouping</h3>
+
+        <p><strong>When to use:</strong> Four or more terms that can be grouped into pairs with common factors.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(x^3 + 2x^2 - 3x - 6\)</p>
+            <p>Group: \((x^3 + 2x^2) + (-3x - 6)\)</p>
+            <p>Factor each group: \(x^2(x + 2) - 3(x + 2)\)</p>
+            <p>Factor out \((x + 2)\): \((x + 2)(x^2 - 3)\)</p>
+        </div>
+
+        <h3>2.3 Factoring Trinomials: \(ax^2 + bx + c\)</h3>
+
+        <p><strong>Case 1: \(a = 1\)</strong> (Monic trinomials)</p>
+        <p>Find two numbers that multiply to \(c\) and add to \(b\).</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(x^2 + 5x + 6\)</p>
+            <p>Need: product = 6, sum = 5<br>Numbers: 2 and 3</p>
+            <p>Factor: \((x + 2)(x + 3)\)</p>
+        </div>
+
+        <p><strong>Case 2: \(a \neq 1\)</strong> (Non-monic trinomials)</p>
+        <p><strong>AC Method:</strong> Find two numbers that multiply to \(ac\) and add to \(b\), then factor by grouping.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(6x^2 + 11x - 10\)</p>
+            <p>Here \(a = 6\), \(b = 11\), \(c = -10\), so \(ac = -60\)</p>
+            <p>Need: product = -60, sum = 11<br>Numbers: 15 and -4</p>
+            <p>Rewrite middle term: \(6x^2 + 15x - 4x - 10\)</p>
+            <p>Group: \((6x^2 + 15x) + (-4x - 10)\)</p>
+            <p>Factor: \(3x(2x + 5) - 2(2x + 5)\)</p>
+            <p>Result: \((2x + 5)(3x - 2)\)</p>
+        </div>
+
+        <h3>2.4 Special Factoring Patterns</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Pattern</th>
+                    <th>Formula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Difference of squares</strong></td>
+                    <td>\(a^2 - b^2 = (a + b)(a - b)\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Perfect square trinomial</strong></td>
+                    <td>\(a^2 + 2ab + b^2 = (a + b)^2\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Perfect square trinomial</strong></td>
+                    <td>\(a^2 - 2ab + b^2 = (a - b)^2\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Sum of cubes</strong></td>
+                    <td>\(a^3 + b^3 = (a + b)(a^2 - ab + b^2)\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Difference of cubes</strong></td>
+                    <td>\(a^3 - b^3 = (a - b)(a^2 + ab + b^2)\)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>Critical:</strong> There is NO "sum of squares" factorization over the reals: \(a^2 + b^2\) cannot be factored with real coefficients.
+        </div>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(x^3 - 8\)</p>
+            <p>Recognize: \(8 = 2^3\), so this is a difference of cubes.</p>
+            <p>Apply formula with \(a = x\), \(b = 2\):</p>
+            <p>\(x^3 - 8 = (x - 2)(x^2 + 2x + 4)\)</p>
+            <p><strong>Verification:</strong> \((x - 2)(x^2 + 2x + 4) = x^3 + 2x^2 + 4x - 2x^2 - 4x - 8 = x^3 - 8\) ✓</p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(x^4 - 16\)</p>
+            <p>This is a difference of squares: \(x^4 - 16 = (x^2)^2 - 4^2 = (x^2 + 4)(x^2 - 4)\)</p>
+            <p>But \(x^2 - 4\) factors further: \(x^2 - 4 = (x + 2)(x - 2)\)</p>
+            <p><strong>Final:</strong> \(x^4 - 16 = (x^2 + 4)(x + 2)(x - 2)\)</p>
+            <p>Note: \(x^2 + 4\) doesn't factor over ℝ.</p>
+        </div>
+
+        <h3>2.5 Substitution for Complex Expressions</h3>
+
+        <p>Sometimes an expression has a repeated structure. Substitute to reveal a simpler pattern.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Factor \(x^4 - 5x^2 + 4\)</p>
+            <p>Let \(u = x^2\). Then: \(u^2 - 5u + 4\)</p>
+            <p>Factor: \((u - 4)(u - 1)\)</p>
+            <p>Substitute back: \((x^2 - 4)(x^2 - 1)\)</p>
+            <p>Factor further: \((x + 2)(x - 2)(x + 1)(x - 1)\)</p>
+        </div>
+
+        <h2 id="section-3">3. Rational Expressions</h2>
+
+        <p>A <strong>rational expression</strong> is a ratio of two polynomials: \(\frac{P(x)}{Q(x)}\) where \(Q(x) \neq 0\).</p>
+
+        <h3>3.1 Domain Restrictions</h3>
+
+        <p>The expression is undefined wherever the denominator equals zero.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Find the domain of \(\frac{x + 3}{x^2 - 4}\)</p>
+            <p>Set denominator = 0: \(x^2 - 4 = 0 \Rightarrow x = \pm 2\)</p>
+            <p><strong>Domain:</strong> All real numbers except \(x = 2\) and \(x = -2\), or \(\mathbb{R} \setminus \{-2, 2\}\)</p>
+        </div>
+
+        <h3>3.2 Simplifying Rational Expressions</h3>
+
+        <p><strong>Step 1:</strong> Factor numerator and denominator completely.<br>
+        <strong>Step 2:</strong> Cancel common factors.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Simplify \(\frac{x^2 - 9}{x^2 + 5x + 6}\)</p>
+            <p>Factor numerator: \(x^2 - 9 = (x + 3)(x - 3)\)</p>
+            <p>Factor denominator: \(x^2 + 5x + 6 = (x + 2)(x + 3)\)</p>
+            <p>Cancel \((x + 3)\): \(\frac{(x + 3)(x - 3)}{(x + 2)(x + 3)} = \frac{x - 3}{x + 2}\), valid for \(x \neq -3, -2\)</p>
+        </div>
+
+        <h3>3.3 Operations with Rational Expressions</h3>
+
+        <p><strong>Multiplication:</strong> \(\frac{A}{B} \cdot \frac{C}{D} = \frac{AC}{BD}\) (factor and cancel first)</p>
+
+        <p><strong>Division:</strong> \(\frac{A}{B} \div \frac{C}{D} = \frac{A}{B} \cdot \frac{D}{C}\)</p>
+
+        <p><strong>Addition/Subtraction:</strong> Find LCD, convert, then combine numerators.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Simplify \(\frac{2}{x - 1} + \frac{3}{x + 2}\)</p>
+            <p>LCD: \((x - 1)(x + 2)\)</p>
+            <p>Convert: \(\frac{2(x + 2)}{(x-1)(x+2)} + \frac{3(x - 1)}{(x-1)(x+2)}\)</p>
+            <p>Combine: \(\frac{2(x + 2) + 3(x - 1)}{(x-1)(x+2)} = \frac{2x + 4 + 3x - 3}{(x-1)(x+2)} = \frac{5x + 1}{(x-1)(x+2)}\)</p>
+        </div>
+
+        <h3>3.4 Complex Fractions</h3>
+
+        <p>A <strong>complex fraction</strong> has fractions in the numerator and/or denominator.</p>
+
+        <p><strong>Strategy:</strong> Multiply numerator and denominator by the LCD of all inner fractions.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Simplify \(\frac{\frac{1}{x} + \frac{1}{y}}{\frac{1}{x} - \frac{1}{y}}\)</p>
+            <p>LCD of inner fractions: \(xy\)</p>
+            <p>Multiply top and bottom by \(xy\):</p>
+            <p>$$\frac{\frac{1}{x} + \frac{1}{y}}{\frac{1}{x} - \frac{1}{y}} \cdot \frac{xy}{xy} = \frac{y + x}{y - x}$$</p>
+        </div>
+
+        <h2 id="section-4">4. Rationalizing Denominators</h2>
+
+        <p><strong>Goal:</strong> Eliminate radicals from denominators (standard form for final answers).</p>
+
+        <h3>4.1 Single Square Root</h3>
+
+        <p>Multiply numerator and denominator by the radical.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Rationalize \(\frac{5}{\sqrt{3}}\)</p>
+            <p>$$\frac{5}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}$$</p>
+        </div>
+
+        <h3>4.2 Sum or Difference with Square Root (Conjugate)</h3>
+
+        <p>Multiply by the conjugate: \((a + b)(a - b) = a^2 - b^2\)</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Rationalize \(\frac{6}{2 + \sqrt{5}}\)</p>
+            <p>Conjugate of \(2 + \sqrt{5}\) is \(2 - \sqrt{5}\)</p>
+            <p>$$\frac{6}{2 + \sqrt{5}} \cdot \frac{2 - \sqrt{5}}{2 - \sqrt{5}} = \frac{6(2 - \sqrt{5})}{4 - 5} = \frac{6(2 - \sqrt{5})}{-1} = -6(2 - \sqrt{5}) = -12 + 6\sqrt{5}$$</p>
+        </div>
+
+        <hr>
+
+        <h2 id="section-5">Practice Problems</h2>
+
+        <h3>Basic</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 1
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>Expand and simplify: \((x - 4)(2x^2 + 3x - 5)\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 2
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>Factor completely: \(x^3 - 4x^2 - x + 4\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 3
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>Simplify: \(\frac{x^2 - 4x + 3}{x^2 - 1}\)</p>
+        </div>
+
+        <h3>Intermediate</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 4
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Simplify the complex fraction: \(\frac{\frac{1}{x+h} - \frac{1}{x}}{h}\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 5
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Factor completely: \(x^6 - 1\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 6
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Rationalize the numerator and simplify: \(\frac{\sqrt{x} - \sqrt{a}}{x - a}\)</p>
+        </div>
+
+        <h3>Exam-Level</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 7
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p>Find \(f'(x)\) for \(f(x) = \frac{1}{x^2}\) using the limit definition.</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 8
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p><strong>Part (a):</strong> Find and factor the characteristic polynomial for \(A = \begin{pmatrix} 5 & 2 \\ 3 & 4 \end{pmatrix}\).</p>
+            <p><strong>Part (b):</strong> Verify that \(\lambda_1 + \lambda_2 = \text{tr}(A)\) and \(\lambda_1 \cdot \lambda_2 = \det(A)\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 9
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p>Prove: \(a^n - b^n = (a - b)(a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1})\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 10
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p>Simplify: \(\frac{x^4 - 16}{x^3 + 8} \cdot \frac{x^2 - 2x + 4}{x^2 + 4} \div \frac{x - 2}{x + 2}\)</p>
+        </div>
+
+        <hr>
+
+        <h2 id="section-6">Solutions</h2>
+
+        <div class="problem">
+            <div class="problem-header">Problem 1: Expand and Simplify</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Expand \((x - 4)(2x^2 + 3x - 5)\)</p>
+                
+                <p><strong>Step 1:</strong> Distribute \(x\):</p>
+                <p>\(x(2x^2 + 3x - 5) = 2x^3 + 3x^2 - 5x\)</p>
+                
+                <p><strong>Step 2:</strong> Distribute \(-4\):</p>
+                <p>\(-4(2x^2 + 3x - 5) = -8x^2 - 12x + 20\)</p>
+                
+                <p><strong>Step 3:</strong> Combine like terms:</p>
+                <p>\(2x^3 + 3x^2 - 5x - 8x^2 - 12x + 20 = 2x^3 - 5x^2 - 17x + 20\)</p>
+                
+                <p><strong>Step 4:</strong> Factor out GCF (checking):</p>
+                <p>Wait, let me recalculate. The original problem states the answer should be \(4(2x^2 - 3x + 5)\).</p>
+                
+                <p>Actually, looking at the source document more carefully, the example given shows:</p>
+                <p>\(2x^3 + 3x^2 - 5x - 8x^2 - 12x + 20\)</p>
+                <p>\(= 2x^3 + (3x^2 - 8x^2) + (-5x - 12x) + 20\)</p>
+                <p>\(= 2x^3 - 5x^2 - 17x + 20\)</p>
+                
+                <p><strong>Answer:</strong> \(2x^3 - 5x^2 - 17x + 20\)</p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 2: Factor Completely</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Factor \(x^3 - 4x^2 - x + 4\)</p>
+                
+                <p><strong>Step 1:</strong> Try grouping:</p>
+                <p>\((x^3 - 4x^2) + (-x + 4)\)</p>
+                
+                <p><strong>Step 2:</strong> Factor each group:</p>
+                <p>\(x^2(x - 4) - 1(x - 4)\)</p>
+                
+                <p><strong>Step 3:</strong> Factor out \((x - 4)\):</p>
+                <p>\((x - 4)(x^2 - 1)\)</p>
+                
+                <p><strong>Step 4:</strong> Factor \(x^2 - 1\) as difference of squares:</p>
+                <p>\((x - 4)(x + 1)(x - 1)\)</p>
+                
+                <p><strong>Answer:</strong> \((x - 4)(x + 1)(x - 1)\)</p>
+                
+                <p><strong>Verification:</strong> \((x-4)(x+1) = x^2 - 3x - 4\), then \((x^2 - 3x - 4)(x - 1) = x^3 - x^2 - 3x^2 + 3x - 4x + 4 = x^3 - 4x^2 - x + 4\) ✓</p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 3: Simplify Rational Expression</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Simplify \(\frac{x^2 - 4x + 3}{x^2 - 1}\)</p>
+                
+                <p><strong>Step 1:</strong> Factor numerator.</p>
+                <p>\(x^2 - 4x + 3\): Need two numbers with product 3 and sum -4. Numbers: -3 and -1.</p>
+                <p>\(x^2 - 4x + 3 = (x - 3)(x - 1)\)</p>
+                
+                <p><strong>Step 2:</strong> Factor denominator.</p>
+                <p>\(x^2 - 1 = (x + 1)(x - 1)\)</p>
+                
+                <p><strong>Step 3:</strong> Cancel common factors.</p>
+                <p>$$\frac{(x - 3)(x - 1)}{(x + 1)(x - 1)} = \frac{x - 3}{x + 1}$$</p>
+                
+                <p><strong>Answer:</strong> \(\frac{x - 3}{x + 1}\), for \(x \neq 1, -1\)</p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 4: Complex Fraction</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Simplify \(\frac{\frac{1}{x+h} - \frac{1}{x}}{h}\)</p>
+                
+                <p><strong>Step 1:</strong> Find common denominator for the numerator.</p>
+                <p>LCD of \(\frac{1}{x+h}\) and \(\frac{1}{x}\) is \(x(x+h)\).</p>
+                
+                <p>$$\frac{1}{x+h} - \frac{1}{x} = \frac{x}{x(x+h)} - \frac{x+h}{x(x+h)} = \frac{x - (x+h)}{x(x+h)} = \frac{-h}{x(x+h)}$$</p>
+                
+                <p><strong>Step 2:</strong> Divide by \(h\).</p>
+                <p>$$\frac{\frac{-h}{x(x+h)}}{h} = \frac{-h}{x(x+h)} \cdot \frac{1}{h} = \frac{-1}{x(x+h)}$$</p>
+                
+                <p><strong>Answer:</strong> \(\frac{-1}{x(x+h)}\)</p>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This is the difference quotient for \(f(x) = \frac{1}{x}\). Taking \(h \to 0\) gives \(f'(x) = \frac{-1}{x^2}\).
+                </div>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 5: Factor \(x^6 - 1\)</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Factor completely: \(x^6 - 1\)</p>
+                
+                <p><strong>Step 1:</strong> Use difference of squares.</p>
+                <p>\(x^6 - 1 = (x^3)^2 - 1^2 = (x^3 + 1)(x^3 - 1)\)</p>
+                
+                <p><strong>Step 2:</strong> Factor each cubic.</p>
+                <p>\(x^3 + 1\) is a sum of cubes: \(x^3 + 1 = (x + 1)(x^2 - x + 1)\)</p>
+                <p>\(x^3 - 1\) is a difference of cubes: \(x^3 - 1 = (x - 1)(x^2 + x + 1)\)</p>
+                
+                <p><strong>Step 3:</strong> Combine.</p>
+                <p>$$x^6 - 1 = (x + 1)(x^2 - x + 1)(x - 1)(x^2 + x + 1)$$</p>
+                
+                <p><strong>Step 4:</strong> Check if quadratic factors can be factored further.</p>
+                <p>For \(x^2 - x + 1\): Discriminant = \(1 - 4 = -3 < 0\). No real roots; doesn't factor over ℝ.</p>
+                <p>For \(x^2 + x + 1\): Discriminant = \(1 - 4 = -3 < 0\). No real roots; doesn't factor over ℝ.</p>
+                
+                <p><strong>Answer:</strong> \((x - 1)(x + 1)(x^2 - x + 1)(x^2 + x + 1)\)</p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 6: Rationalize Numerator</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Rationalize the numerator and simplify: \(\frac{\sqrt{x} - \sqrt{a}}{x - a}\)</p>
+                
+                <p><strong>Step 1:</strong> Multiply by the conjugate of the numerator.</p>
+                <p>$$\frac{\sqrt{x} - \sqrt{a}}{x - a} \cdot \frac{\sqrt{x} + \sqrt{a}}{\sqrt{x} + \sqrt{a}}$$</p>
+                
+                <p><strong>Step 2:</strong> Simplify the numerator using difference of squares.</p>
+                <p>$$(\sqrt{x})^2 - (\sqrt{a})^2 = x - a$$</p>
+                
+                <p><strong>Step 3:</strong> Write the result.</p>
+                <p>$$\frac{x - a}{(x - a)(\sqrt{x} + \sqrt{a})}$$</p>
+                
+                <p><strong>Step 4:</strong> Cancel \((x - a)\).</p>
+                <p>$$\frac{1}{\sqrt{x} + \sqrt{a}}$$</p>
+                
+                <p><strong>Answer:</strong> \(\frac{1}{\sqrt{x} + \sqrt{a}}\), for \(x \neq a\)</p>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This is the simplified form of \(\frac{f(x) - f(a)}{x - a}\) where \(f(x) = \sqrt{x}\). Taking \(x \to a\) gives \(f'(a) = \frac{1}{2\sqrt{a}}\).
+                </div>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 7: Derivative from Limit Definition</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Find \(f'(x)\) for \(f(x) = \frac{1}{x^2}\) using the limit definition.</p>
+                
+                <p><strong>Step 1:</strong> Write the difference quotient.</p>
+                <p>$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{\frac{1}{(x+h)^2} - \frac{1}{x^2}}{h}$$</p>
+                
+                <p><strong>Step 2:</strong> Find common denominator in the numerator.</p>
+                <p>$$\frac{1}{(x+h)^2} - \frac{1}{x^2} = \frac{x^2 - (x+h)^2}{x^2(x+h)^2}$$</p>
+                
+                <p><strong>Step 3:</strong> Expand \((x+h)^2\) and simplify the numerator.</p>
+                <p>$$x^2 - (x+h)^2 = x^2 - (x^2 + 2xh + h^2) = -2xh - h^2 = -h(2x + h)$$</p>
+                
+                <p><strong>Step 4:</strong> Substitute back.</p>
+                <p>$$\frac{\frac{-h(2x + h)}{x^2(x+h)^2}}{h} = \frac{-h(2x + h)}{h \cdot x^2(x+h)^2} = \frac{-(2x + h)}{x^2(x+h)^2}$$</p>
+                
+                <p><strong>Step 5:</strong> Take the limit as \(h \to 0\).</p>
+                <p>$$f'(x) = \lim_{h \to 0} \frac{-(2x + h)}{x^2(x+h)^2} = \frac{-(2x + 0)}{x^2 \cdot x^2} = \frac{-2x}{x^4} = \frac{-2}{x^3}$$</p>
+                
+                <p><strong>Answer:</strong> \(f'(x) = -\frac{2}{x^3}\)</p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 8: Characteristic Polynomial</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p><strong>Part (a):</strong> Find and factor the characteristic polynomial for \(A = \begin{pmatrix} 5 & 2 \\ 3 & 4 \end{pmatrix}\).</p>
+                
+                <p>Using the formula \(p(\lambda) = \lambda^2 - (a+d)\lambda + (ad - bc)\):</p>
+                <ul>
+                    <li>Trace: \(a + d = 5 + 4 = 9\)</li>
+                    <li>Determinant: \(ad - bc = 5(4) - 2(3) = 20 - 6 = 14\)</li>
+                </ul>
+                
+                <p>$$p(\lambda) = \lambda^2 - 9\lambda + 14$$</p>
+                
+                <p>Factor: Need two numbers with product 14 and sum 9. Numbers: 7 and 2.</p>
+                <p>$$p(\lambda) = (\lambda - 7)(\lambda - 2)$$</p>
+                
+                <p><strong>Eigenvalues:</strong> \(\lambda_1 = 7\), \(\lambda_2 = 2\)</p>
+                
+                <p><strong>Part (b):</strong> Verify the relationships.</p>
+                <p>\(\lambda_1 + \lambda_2 = 7 + 2 = 9 = \text{tr}(A)\) ✓</p>
+                <p>\(\lambda_1 \cdot \lambda_2 = 7 \cdot 2 = 14 = \det(A)\) ✓</p>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This relationship (Vieta's formulas for the characteristic polynomial) holds for all \(n \times n\) matrices: the sum of eigenvalues equals the trace, and the product equals the determinant.
+                </div>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 9: General Factorization Formula</div>
+            
+            <div class="solution">
+                <div class="solution-header">Proof</div>
+                <p>Prove: \(a^n - b^n = (a - b)(a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1})\)</p>
+                
+                <p>Let \(S = a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1}\)</p>
+                
+                <p>This is a geometric series with first term \(a^{n-1}\), ratio \(\frac{b}{a}\), and \(n\) terms.</p>
+                
+                <p>Compute \((a - b) \cdot S\):</p>
+                
+                <p>$$a \cdot S = a^n + a^{n-1}b + a^{n-2}b^2 + \cdots + a^2b^{n-2} + ab^{n-1}$$</p>
+                
+                <p>$$b \cdot S = a^{n-1}b + a^{n-2}b^2 + a^{n-3}b^3 + \cdots + ab^{n-1} + b^n$$</p>
+                
+                <p>Subtract:</p>
+                <p>$$a \cdot S - b \cdot S = a^n - b^n$$</p>
+                
+                <p>All middle terms cancel (telescoping sum).</p>
+                
+                <p>Therefore: \((a - b) \cdot S = a^n - b^n\) ∎</p>
+                
+                <div class="info-box">
+                    <strong>Application in Numerical Analysis:</strong>
+                    <p>This identity is used to analyze the error \(|x^n - x_0^n|\) when approximating a value \(x\) by \(x_0\):</p>
+                    <p>$$|x^n - x_0^n| = |x - x_0| \cdot |x^{n-1} + x^{n-2}x_0 + \cdots + x_0^{n-1}|$$</p>
+                    <p>If \(|x|, |x_0| \leq M\), then the sum has \(n\) terms each bounded by \(M^{n-1}\), so:</p>
+                    <p>$$|x^n - x_0^n| \leq n M^{n-1} |x - x_0|$$</p>
+                    <p>This shows that small errors in \(x\) can be amplified by a factor of \(nM^{n-1}\) when computing \(x^n\) — relevant to conditioning analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 10: Complex Rational Expression</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>Simplify: \(\frac{x^4 - 16}{x^3 + 8} \cdot \frac{x^2 - 2x + 4}{x^2 + 4} \div \frac{x - 2}{x + 2}\)</p>
+                
+                <p><strong>Step 1:</strong> Convert division to multiplication.</p>
+                <p>$$= \frac{x^4 - 16}{x^3 + 8} \cdot \frac{x^2 - 2x + 4}{x^2 + 4} \cdot \frac{x + 2}{x - 2}$$</p>
+                
+                <p><strong>Step 2:</strong> Factor all expressions.</p>
+                <ul>
+                    <li>\(x^4 - 16 = (x^2 + 4)(x^2 - 4) = (x^2 + 4)(x + 2)(x - 2)\)</li>
+                    <li>\(x^3 + 8 = (x + 2)(x^2 - 2x + 4)\) (sum of cubes)</li>
+                    <li>\(x^2 - 2x + 4\): doesn't factor (discriminant = \(4 - 16 = -12 < 0\))</li>
+                    <li>\(x^2 + 4\): doesn't factor over ℝ</li>
+                </ul>
+                
+                <p><strong>Step 3:</strong> Substitute factored forms.</p>
+                <p>$$= \frac{(x^2 + 4)(x + 2)(x - 2)}{(x + 2)(x^2 - 2x + 4)} \cdot \frac{x^2 - 2x + 4}{x^2 + 4} \cdot \frac{x + 2}{x - 2}$$</p>
+                
+                <p><strong>Step 4:</strong> Cancel common factors.</p>
+                <ul>
+                    <li>\((x^2 + 4)\) cancels</li>
+                    <li>\((x + 2)\) appears twice in numerator, once in denominator — one cancels</li>
+                    <li>\((x - 2)\) cancels</li>
+                    <li>\((x^2 - 2x + 4)\) cancels</li>
+                </ul>
+                
+                <p><strong>Step 5:</strong> What remains.</p>
+                <p>$$= x + 2$$</p>
+                
+                <p><strong>Answer:</strong> \(x + 2\), for \(x \neq 2, -2\)</p>
+                
+                <div class="warning-box">
+                    <strong>Verification:</strong> The original expression is undefined at \(x = 2\) (from \(x - 2\) in denominator after converting division) and at \(x = -2\) (from \(x^3 + 8 = 0\)). These restrictions carry through to the simplified answer.
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>Summary</h2>
+            
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li><strong>Always factor out GCF first</strong> before attempting other factoring techniques</li>
+                <li><strong>Special patterns</strong> (difference of squares, sum/difference of cubes) appear constantly — recognize them instantly</li>
+                <li><strong>Rational expressions:</strong> Factor completely, cancel carefully, track domain restrictions</li>
+                <li><strong>Complex fractions:</strong> Multiply by LCD of all inner fractions</li>
+                <li><strong>Rationalizing:</strong> Use conjugates for expressions with square roots</li>
+                <li><strong>These techniques are tools for calculus/analysis</strong> — difference quotients, limits, and partial fractions all require algebraic fluency</li>
+            </ul>
+
+            <h3>Common Mistakes</h3>
+            <ul>
+                <li>Forgetting domain restrictions after simplifying (cancelled factors still cause undefined points)</li>
+                <li>Writing \(a^2 + b^2 = (a + b)^2\) — this is wrong; \(a^2 + b^2\) doesn't factor over ℝ</li>
+                <li>Sign errors when distributing negatives across parentheses</li>
+                <li>Incomplete factoring — always check if factors can be factored further</li>
+                <li>Confusing \((a - b)^2 = a^2 - 2ab + b^2\) with \(a^2 - b^2 = (a+b)(a-b)\)</li>
+            </ul>
+
+            <h3>What's Next</h3>
+            <p><strong>Lesson M1.3: Equations and Inequalities</strong> — solving polynomial, rational, radical, and absolute value equations; compound inequalities; sign analysis for rational inequalities.</p>
+        </div>
+
+        <div class="lesson-footer">
+            <p>Part of the PhD Qualifying Exam Preparation Series</p>
+            <p>Module M1: Foundations • Lesson 2 of 8</p>
+        </div>
+    </div>
+
+    <script>
+        // Render all math expressions with KaTeX
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

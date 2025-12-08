@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson M1.1: Real Numbers, Properties, and Order | PhD Qualifying Exam Prep</title>
+    
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f4c75;
+            --highlight: #3282b8;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --bg: #fdfefe;
+            --bg-alt: #f8f9fa;
+            --border: #dfe6e9;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --code-bg: #2d3436;
+            --code-text: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', 'Crimson Text', Georgia, serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 18px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin: -3rem -2rem 3rem -2rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .lesson-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .lesson-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lesson-meta-item::before {
+            content: "●";
+            color: var(--highlight);
+        }
+
+        /* Navigation */
+        .toc {
+            background: var(--bg-alt);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .toc li {
+            padding: 0.4rem 0;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--highlight);
+            padding-left: 0.5rem;
+        }
+
+        /* Content boxes */
+        .info-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fdcb6e15 0%, #e1705515 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box::before {
+            content: "⚠️ ";
+            font-size: 1.2em;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #00b89415 0%, #00cec915 100%);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: var(--bg-alt);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Math */
+        .katex {
+            font-size: 1.1em;
+        }
+
+        .katex-display {
+            margin: 2rem 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        /* Problem sections */
+        .problem {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .problem:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .problem-header {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-difficulty {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .difficulty-basic {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+
+        .difficulty-intermediate {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .difficulty-exam {
+            background: #d63031;
+            color: white;
+        }
+
+        .solution {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border);
+        }
+
+        .solution-header {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Code */
+        code {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Summary section */
+        .summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .summary h2 {
+            color: white;
+            border-bottom: 3px solid var(--highlight);
+            margin-top: 0;
+        }
+
+        .summary h3 {
+            color: var(--highlight);
+        }
+
+        .summary ul {
+            margin-left: 1.5rem;
+        }
+
+        /* Footer */
+        .lesson-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .lesson-header {
+                padding: 3rem 1rem;
+                margin: -2rem -1rem 2rem -1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Link styles */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover {
+            border-bottom-color: var(--highlight);
+        }
+
+        /* Strong emphasis */
+        strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* Section divider */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Pro:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1>Lesson M1.1: Real Numbers, Properties, and Order</h1>
+            <div class="lesson-meta">
+                <div class="lesson-meta-item">Module M1: Foundations</div>
+                <div class="lesson-meta-item">Prerequisites: None</div>
+                <div class="lesson-meta-item">Duration: ~2 hours</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>Learning Objectives</h3>
+            <ul>
+                <li>Identify and classify numbers within the real number system</li>
+                <li>Apply the algebraic properties of real numbers</li>
+                <li>Work fluently with inequalities and absolute value</li>
+                <li>Use interval notation correctly</li>
+                <li>Understand the completeness property (preview for analysis)</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <h3>Contents</h3>
+            <ul>
+                <li><a href="#section-1">1. The Real Number System</a></li>
+                <li><a href="#section-2">2. Algebraic Properties</a></li>
+                <li><a href="#section-3">3. Order Properties</a></li>
+                <li><a href="#section-4">4. Absolute Value</a></li>
+                <li><a href="#section-5">5. Interval Notation</a></li>
+                <li><a href="#section-6">6. Completeness</a></li>
+                <li><a href="#section-7">Practice Problems</a></li>
+                <li><a href="#section-8">Solutions</a></li>
+            </ul>
+        </div>
+
+        <h2 id="section-1">1. The Real Number System</h2>
+        
+        <p>The real numbers, denoted <strong>ℝ</strong>, form the foundation of all calculus and analysis. They consist of every point on the number line — no gaps.</p>
+
+        <h3>1.1 Subsets of ℝ</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Set</th>
+                    <th>Symbol</th>
+                    <th>Description</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Natural Numbers</td>
+                    <td>ℕ</td>
+                    <td>Counting numbers</td>
+                    <td>1, 2, 3, 4, ...</td>
+                </tr>
+                <tr>
+                    <td>Whole Numbers</td>
+                    <td>ℕ₀</td>
+                    <td>Naturals plus zero</td>
+                    <td>0, 1, 2, 3, ...</td>
+                </tr>
+                <tr>
+                    <td>Integers</td>
+                    <td>ℤ</td>
+                    <td>Whole numbers and negatives</td>
+                    <td>..., -2, -1, 0, 1, 2, ...</td>
+                </tr>
+                <tr>
+                    <td>Rational Numbers</td>
+                    <td>ℚ</td>
+                    <td>Ratios of integers (p/q, q ≠ 0)</td>
+                    <td>1/2, -3/4, 7, 0.333...</td>
+                </tr>
+                <tr>
+                    <td>Irrational Numbers</td>
+                    <td>ℝ \ ℚ</td>
+                    <td>Cannot be expressed as ratio</td>
+                    <td>√2, π, e</td>
+                </tr>
+                <tr>
+                    <td>Real Numbers</td>
+                    <td>ℝ</td>
+                    <td>All rationals and irrationals</td>
+                    <td>Everything above</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Key relationship:</strong> ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</p>
+
+        <h3>1.2 Rational vs. Irrational</h3>
+
+        <p>A number is <strong>rational</strong> if and only if its decimal expansion either:</p>
+        <ul>
+            <li>Terminates (e.g., 0.75), or</li>
+            <li>Repeats (e.g., 0.333... = 1/3)</li>
+        </ul>
+
+        <p>A number is <strong>irrational</strong> if its decimal expansion neither terminates nor repeats.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Is 0.101001000100001... rational or irrational?</p>
+            <p>The pattern grows but never repeats — it's <strong>irrational</strong>.</p>
+        </div>
+
+        <h2 id="section-2">2. Algebraic Properties of Real Numbers</h2>
+
+        <p>For all real numbers <em>a</em>, <em>b</em>, <em>c</em>:</p>
+
+        <h3>2.1 Field Properties</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Addition</th>
+                    <th>Multiplication</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Closure</strong></td>
+                    <td>\(a + b \in \mathbb{R}\)</td>
+                    <td>\(a \cdot b \in \mathbb{R}\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Commutative</strong></td>
+                    <td>\(a + b = b + a\)</td>
+                    <td>\(a \cdot b = b \cdot a\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Associative</strong></td>
+                    <td>\((a + b) + c = a + (b + c)\)</td>
+                    <td>\((a \cdot b) \cdot c = a \cdot (b \cdot c)\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Identity</strong></td>
+                    <td>\(a + 0 = a\)</td>
+                    <td>\(a \cdot 1 = a\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Inverse</strong></td>
+                    <td>\(a + (-a) = 0\)</td>
+                    <td>\(a \cdot (1/a) = 1\), for \(a \neq 0\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Distributive</strong></td>
+                    <td colspan="2">\(a \cdot (b + c) = a \cdot b + a \cdot c\)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 Why These Matter</h3>
+
+        <p>These aren't just abstract rules — they justify every algebraic manipulation you'll ever do.</p>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Why can we "factor out" in the expression \(3x + 3y\)?</p>
+            <p>By the distributive property: \(3x + 3y = 3(x + y)\)</p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Why does \((-1)(-1) = 1\)?</p>
+            <p>We need: \((-1) + (-1)(-1) = (-1)(1 + (-1)) = (-1)(0) = 0\)</p>
+            <p>So \((-1)(-1)\) must be the additive inverse of \((-1)\), which is 1.</p>
+        </div>
+
+        <h2 id="section-3">3. Order Properties</h2>
+
+        <p>The real numbers are <strong>ordered</strong>: for any two distinct reals, one is larger.</p>
+
+        <h3>3.1 Trichotomy</h3>
+
+        <p>For any real numbers <em>a</em> and <em>b</em>, exactly one holds:</p>
+        <ul>
+            <li>\(a < b\)</li>
+            <li>\(a = b\)</li>
+            <li>\(a > b\)</li>
+        </ul>
+
+        <h3>3.2 Properties of Inequalities</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Statement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Transitive</strong></td>
+                    <td>If \(a < b\) and \(b < c\), then \(a < c\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Addition</strong></td>
+                    <td>If \(a < b\), then \(a + c < b + c\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Multiplication (positive)</strong></td>
+                    <td>If \(a < b\) and \(c > 0\), then \(ac < bc\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Multiplication (negative)</strong></td>
+                    <td>If \(a < b\) and \(c < 0\), then \(ac > bc\)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>Critical:</strong> Multiplying or dividing by a negative number <strong>reverses</strong> the inequality.
+        </div>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Solve \(-2x < 6\)</p>
+            <p>Dividing by -2 (negative), we reverse: \(x > -3\)</p>
+        </div>
+
+        <h2 id="section-4">4. Absolute Value</h2>
+
+        <h3>4.1 Definition</h3>
+
+        <p>The <strong>absolute value</strong> of a real number <em>a</em> is:</p>
+
+        <p>$$|a| = \begin{cases} a & \text{if } a \geq 0 \\ -a & \text{if } a < 0 \end{cases}$$</p>
+
+        <p><strong>Geometrically:</strong> \(|a|\) is the distance from <em>a</em> to 0 on the number line.</p>
+
+        <h3>4.2 Key Properties</h3>
+
+        <p>For all real <em>a</em>, <em>b</em>:</p>
+
+        <ol>
+            <li>\(|a| \geq 0\), and \(|a| = 0\) if and only if \(a = 0\)</li>
+            <li>\(|-a| = |a|\)</li>
+            <li>\(|ab| = |a| \cdot |b|\)</li>
+            <li>\(|a/b| = |a| / |b|\) (for \(b \neq 0\))</li>
+            <li><strong>Triangle Inequality:</strong> \(|a + b| \leq |a| + |b|\)</li>
+        </ol>
+
+        <h3>4.3 Solving Absolute Value Equations and Inequalities</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Type 1:</strong> \(|x| = k\) (where \(k \geq 0\))</td>
+                    <td>\(x = k\) or \(x = -k\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Type 2:</strong> \(|x| < k\) (where \(k > 0\))</td>
+                    <td>\(-k < x < k\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Type 3:</strong> \(|x| > k\) (where \(k \geq 0\))</td>
+                    <td>\(x < -k\) or \(x > k\)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <p><strong>Example:</strong> Solve \(|2x - 3| \leq 5\)</p>
+            <p>This means: \(-5 \leq 2x - 3 \leq 5\)</p>
+            <p>Add 3: \(-2 \leq 2x \leq 8\)</p>
+            <p>Divide by 2: \(-1 \leq x \leq 4\)</p>
+        </div>
+
+        <h2 id="section-5">5. Interval Notation</h2>
+
+        <p>Intervals describe connected subsets of ℝ.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Notation</th>
+                    <th>Set-Builder</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>\((a, b)\)</td>
+                    <td>\(\{x : a < x < b\}\)</td>
+                    <td>Open interval</td>
+                </tr>
+                <tr>
+                    <td>\([a, b]\)</td>
+                    <td>\(\{x : a \leq x \leq b\}\)</td>
+                    <td>Closed interval</td>
+                </tr>
+                <tr>
+                    <td>\([a, b)\)</td>
+                    <td>\(\{x : a \leq x < b\}\)</td>
+                    <td>Half-open (closed left)</td>
+                </tr>
+                <tr>
+                    <td>\((a, b]\)</td>
+                    <td>\(\{x : a < x \leq b\}\)</td>
+                    <td>Half-open (closed right)</td>
+                </tr>
+                <tr>
+                    <td>\((a, \infty)\)</td>
+                    <td>\(\{x : x > a\}\)</td>
+                    <td>Unbounded above</td>
+                </tr>
+                <tr>
+                    <td>\((-\infty, b]\)</td>
+                    <td>\(\{x : x \leq b\}\)</td>
+                    <td>Unbounded below</td>
+                </tr>
+                <tr>
+                    <td>\((-\infty, \infty)\)</td>
+                    <td>ℝ</td>
+                    <td>All real numbers</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>Convention:</strong> Parentheses ( ) mean "not included"; brackets [ ] mean "included."
+            <br>
+            ∞ and -∞ are never included (always use parentheses with them).
+        </div>
+
+        <h2 id="section-6">6. Completeness (Preview)</h2>
+
+        <p>Here's the property that separates ℝ from ℚ:</p>
+
+        <div class="success-box">
+            <strong>Completeness Axiom:</strong> Every nonempty subset of ℝ that is bounded above has a least upper bound (supremum) in ℝ.
+        </div>
+
+        <p><strong>Why ℚ fails this:</strong> Consider \(S = \{x \in \mathbb{Q} : x^2 < 2\}\). This set is bounded above (by 2, for instance), but its least upper bound would be \(\sqrt{2}\), which is not in ℚ.</p>
+
+        <p>This axiom is the foundation of real analysis — we'll return to it rigorously in Module M7.</p>
+
+        <hr>
+
+        <h2 id="section-7">Practice Problems</h2>
+
+        <h3>Basic</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 1
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>Classify each number as natural, integer, rational, or irrational (choose the most specific):</p>
+            <ol type="a">
+                <li>-7</li>
+                <li>4/2</li>
+                <li>√9</li>
+                <li>√5</li>
+                <li>0.121212...</li>
+            </ol>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 2
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>State which property justifies each step:</p>
+            <p>$$3 + (x + 2) = 3 + (2 + x) = (3 + 2) + x = 5 + x$$</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 3
+                <span class="problem-difficulty difficulty-basic">BASIC</span>
+            </div>
+            <p>Solve: \(-3x + 7 > 1\)</p>
+        </div>
+
+        <h3>Intermediate</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 4
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Solve and express in interval notation: \(|4 - 2x| < 6\)</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 5
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Prove that the product of two rational numbers is rational.</p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 6
+                <span class="problem-difficulty difficulty-intermediate">INTERMEDIATE</span>
+            </div>
+            <p>Solve: \(|x - 3| + |x + 1| = 6\)</p>
+        </div>
+
+        <h3>Exam-Level</h3>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 7
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p>Prove: For all real <em>a</em>, <em>b</em>: \(|a - b| \geq ||a| - |b||\)</p>
+            <p><em>(This is the reverse triangle inequality)</em></p>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">
+                Problem 8
+                <span class="problem-difficulty difficulty-exam">EXAM-LEVEL</span>
+            </div>
+            <p>Let \(S = \{1 - 1/n : n \in \mathbb{N}\}\).</p>
+            <ol type="a">
+                <li>List the first five elements of S.</li>
+                <li>Is S bounded above? If so, what is sup(S)?</li>
+                <li>Is sup(S) ∈ S?</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2 id="section-8">Solutions</h2>
+
+        <div class="problem">
+            <div class="problem-header">Problem 1: Number Classification</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution (a): -7</div>
+                <p>Let's check each category from most specific to least:</p>
+                <ul>
+                    <li>Natural (ℕ)? No — naturals are positive: 1, 2, 3, ...</li>
+                    <li>Integer (ℤ)? <strong>Yes</strong> — integers include all whole numbers and their negatives</li>
+                    <li>Rational (ℚ)? Also yes — we can write -7 = -7/1</li>
+                </ul>
+                <p><strong>Most specific classification: Integer (ℤ)</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (b): 4/2</div>
+                <p>First, simplify: 4/2 = 2</p>
+                <p>Now classify 2:</p>
+                <ul>
+                    <li>Natural (ℕ)? <strong>Yes</strong> — 2 is a counting number</li>
+                </ul>
+                <p><strong>Most specific classification: Natural Number (ℕ)</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (c): √9</div>
+                <p>First, simplify: √9 = 3 (taking the principal/positive root)</p>
+                <p><strong>Most specific classification: Natural Number (ℕ)</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (d): √5</div>
+                <p>Can √5 be simplified to a nice number? Let's check if 5 is a perfect square: 1, 4, 9, 16, ... — no, 5 is not a perfect square.</p>
+                <p>Is √5 rational? Suppose √5 = p/q where p, q are integers with no common factors.</p>
+                <p>Then: \(5 = p^2/q^2\), so \(p^2 = 5q^2\)</p>
+                <p>This means \(p^2\) is divisible by 5, so p is divisible by 5 (since 5 is prime).<br>
+                Write p = 5k for some integer k.</p>
+                <p>Then: \((5k)^2 = 5q^2 \Rightarrow 25k^2 = 5q^2 \Rightarrow 5k^2 = q^2\)</p>
+                <p>So \(q^2\) is divisible by 5, meaning q is divisible by 5.</p>
+                <p>But if both p and q are divisible by 5, they share a common factor — contradiction!</p>
+                <p>Therefore √5 is <strong>irrational</strong>.</p>
+                <p><strong>Most specific classification: Irrational (ℝ \ ℚ)</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (e): 0.121212...</div>
+                <p>This decimal repeats with period 2 (the block "12" repeats forever).</p>
+                <p>Any repeating decimal is rational. Let's prove it by finding the fraction:</p>
+                <p>Let x = 0.121212...</p>
+                <p>Multiply by 100 (since the repeating block has 2 digits):<br>
+                100x = 12.121212...</p>
+                <p>Subtract the original:<br>
+                100x - x = 12.121212... - 0.121212...<br>
+                99x = 12<br>
+                x = 12/99 = 4/33</p>
+                <p><strong>Verification:</strong> 4 ÷ 33 = 0.121212... ✓</p>
+                <p><strong>Most specific classification: Rational (ℚ)</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 2: Identify Properties</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p><strong>Step 1:</strong> \(3 + (x + 2) = 3 + (2 + x)\)</p>
+                <p>Inside the parentheses, we swapped x + 2 to 2 + x.</p>
+                <p><strong>Property: Commutative Property of Addition</strong> (a + b = b + a)</p>
+                
+                <p><strong>Step 2:</strong> \(3 + (2 + x) = (3 + 2) + x\)</p>
+                <p>We regrouped: instead of adding 3 to the quantity (2 + x), we add (3 + 2) to x.</p>
+                <p><strong>Property: Associative Property of Addition</strong> ((a + b) + c = a + (b + c))</p>
+                
+                <p><strong>Step 3:</strong> \((3 + 2) + x = 5 + x\)</p>
+                <p>We computed 3 + 2 = 5.</p>
+                <p><strong>Property: Substitution / Arithmetic</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 3: Solve -3x + 7 > 1</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p><strong>Step 1:</strong> Isolate the term with x</p>
+                <p>Subtract 7 from both sides:<br>
+                \(-3x + 7 - 7 > 1 - 7\)<br>
+                \(-3x > -6\)</p>
+                
+                <p><strong>Step 2:</strong> Solve for x</p>
+                <p>Divide both sides by -3.</p>
+                <div class="warning-box">
+                    <strong>Critical:</strong> We're dividing by a negative number, so we must <strong>reverse the inequality sign</strong>.
+                </div>
+                <p>\(-3x / (-3) < -6 / (-3)\)<br>
+                \(x < 2\)</p>
+                
+                <p><strong>Solution: \(x < 2\), or in interval notation: \((-\infty, 2)\)</strong></p>
+                
+                <p><strong>Verification:</strong> Let's test x = 0 (which should work) and x = 3 (which shouldn't):</p>
+                <ul>
+                    <li>x = 0: -3(0) + 7 = 7 > 1 ✓</li>
+                    <li>x = 3: -3(3) + 7 = -9 + 7 = -2 > 1? No, -2 < 1 ✓ (correctly excluded)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 4: Solve |4 - 2x| < 6</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p><strong>Step 1:</strong> Apply the absolute value inequality rule</p>
+                <p>For |expression| < k where k > 0, we have: -k < expression < k</p>
+                <p>So: \(-6 < 4 - 2x < 6\)</p>
+                
+                <p><strong>Step 2:</strong> Solve the compound inequality</p>
+                <p>Subtract 4 from all parts:<br>
+                \(-6 - 4 < 4 - 2x - 4 < 6 - 4\)<br>
+                \(-10 < -2x < 2\)</p>
+                
+                <p><strong>Step 3:</strong> Divide by -2</p>
+                <div class="warning-box">
+                    <strong>Critical:</strong> Dividing by negative reverses BOTH inequality signs.
+                </div>
+                <p>\(-10 / (-2) > -2x / (-2) > 2 / (-2)\)<br>
+                \(5 > x > -1\)</p>
+                
+                <p><strong>Step 4:</strong> Rewrite in standard order</p>
+                <p>\(5 > x > -1\) is the same as \(-1 < x < 5\)</p>
+                
+                <p><strong>Solution: \(-1 < x < 5\), or in interval notation: \((-1, 5)\)</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 5: Product of Rationals</div>
+            
+            <div class="solution">
+                <div class="solution-header">Proof</div>
+                <p>Let a and b be rational numbers.</p>
+                <p>By definition of rational, there exist integers p, q, r, s with \(q \neq 0\) and \(s \neq 0\) such that:</p>
+                <ul>
+                    <li>\(a = p/q\)</li>
+                    <li>\(b = r/s\)</li>
+                </ul>
+                <p>Consider their product:<br>
+                \(a \cdot b = (p/q) \cdot (r/s) = (p \cdot r) / (q \cdot s)\)</p>
+                
+                <p>Now we verify this is rational:</p>
+                <ul>
+                    <li>\(p \cdot r\) is an integer (integers are closed under multiplication)</li>
+                    <li>\(q \cdot s\) is an integer (integers are closed under multiplication)</li>
+                    <li>\(q \cdot s \neq 0\) (since \(q \neq 0\) and \(s \neq 0\), and the product of nonzero numbers is nonzero)</li>
+                </ul>
+                
+                <p>Therefore \(a \cdot b = (pr)/(qs)\) is a ratio of two integers with nonzero denominator.</p>
+                <p><strong>By definition, \(a \cdot b\) is rational. ∎</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 6: Solve |x - 3| + |x + 1| = 6</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution</div>
+                <p>This problem has two absolute values with different expressions inside. We need to consider cases based on where each expression changes sign.</p>
+                
+                <p><strong>Step 1:</strong> Find critical points</p>
+                <p>|x - 3| changes sign at x = 3<br>
+                |x + 1| changes sign at x = -1</p>
+                <p>These divide the number line into three regions: x < -1, -1 ≤ x < 3, and x ≥ 3</p>
+                
+                <p><strong>Case 1: x < -1</strong></p>
+                <p>In this region:</p>
+                <ul>
+                    <li>x - 3 < 0, so |x - 3| = -(x - 3) = -x + 3</li>
+                    <li>x + 1 < 0, so |x + 1| = -(x + 1) = -x - 1</li>
+                </ul>
+                <p>The equation becomes:<br>
+                \((-x + 3) + (-x - 1) = 6\)<br>
+                \(-2x + 2 = 6\)<br>
+                \(-2x = 4\)<br>
+                \(x = -2\)</p>
+                <p>Check: Is x = -2 in our region x < -1? Yes, -2 < -1 ✓</p>
+                <p>Verify: |(-2) - 3| + |(-2) + 1| = |-5| + |-1| = 5 + 1 = 6 ✓</p>
+                <p><strong>x = -2 is a solution.</strong></p>
+                
+                <p><strong>Case 2: -1 ≤ x < 3</strong></p>
+                <p>The equation becomes:<br>
+                \((-x + 3) + (x + 1) = 6\)<br>
+                \(4 = 6\)</p>
+                <p>This is a contradiction! No solution exists in this region.</p>
+                
+                <p><strong>Case 3: x ≥ 3</strong></p>
+                <p>The equation becomes:<br>
+                \((x - 3) + (x + 1) = 6\)<br>
+                \(2x - 2 = 6\)<br>
+                \(2x = 8\)<br>
+                \(x = 4\)</p>
+                <p>Check: Is x = 4 in our region x ≥ 3? Yes, 4 ≥ 3 ✓</p>
+                <p>Verify: |4 - 3| + |4 + 1| = |1| + |5| = 1 + 5 = 6 ✓</p>
+                <p><strong>x = 4 is a solution.</strong></p>
+                
+                <p><strong>Final Solution: x = -2 or x = 4</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 7: Reverse Triangle Inequality</div>
+            
+            <div class="solution">
+                <div class="solution-header">Proof</div>
+                <p>We'll use the standard triangle inequality: \(|x + y| \leq |x| + |y|\)</p>
+                
+                <p><strong>Part 1:</strong> Show \(|a| - |b| \leq |a - b|\)</p>
+                <p>Write \(a = (a - b) + b\)</p>
+                <p>Apply the triangle inequality:<br>
+                \(|a| = |(a - b) + b| \leq |a - b| + |b|\)</p>
+                <p>Subtract |b| from both sides:<br>
+                \(|a| - |b| \leq |a - b|\) ... (Inequality 1)</p>
+                
+                <p><strong>Part 2:</strong> Show \(|b| - |a| \leq |a - b|\)</p>
+                <p>By symmetry (swap a and b in the argument above):<br>
+                \(|b| - |a| \leq |b - a|\)</p>
+                <p>But \(|b - a| = |-(a - b)| = |a - b|\), so:<br>
+                \(|b| - |a| \leq |a - b|\)</p>
+                <p>Multiply both sides by -1 (this reverses the inequality):<br>
+                \(|a| - |b| \geq -|a - b|\) ... (Inequality 2)</p>
+                
+                <p><strong>Part 3:</strong> Combine the inequalities</p>
+                <p>From Inequality 1: \(|a| - |b| \leq |a - b|\)<br>
+                From Inequality 2: \(|a| - |b| \geq -|a - b|\)</p>
+                <p>Together: \(-|a - b| \leq |a| - |b| \leq |a - b|\)</p>
+                <p>By the definition of absolute value, this means:<br>
+                \(||a| - |b|| \leq |a - b|\)</p>
+                <p>Equivalently: <strong>\(|a - b| \geq ||a| - |b||\) ∎</strong></p>
+            </div>
+        </div>
+
+        <div class="problem">
+            <div class="problem-header">Problem 8: Supremum Problem</div>
+            
+            <div class="solution">
+                <div class="solution-header">Solution (a): First five elements</div>
+                <p>Substitute n = 1, 2, 3, 4, 5:</p>
+                <ul>
+                    <li>n = 1: 1 - 1/1 = 0</li>
+                    <li>n = 2: 1 - 1/2 = 1/2 = 0.5</li>
+                    <li>n = 3: 1 - 1/3 ≈ 0.667</li>
+                    <li>n = 4: 1 - 1/4 = 3/4 = 0.75</li>
+                    <li>n = 5: 1 - 1/5 = 4/5 = 0.8</li>
+                </ul>
+                <p><strong>First five elements: {0, 1/2, 2/3, 3/4, 4/5}</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (b): Is S bounded above? What is sup(S)?</div>
+                <p>Observe the pattern: as n increases, 1/n decreases, so 1 - 1/n increases.</p>
+                <p>For all \(n \in \mathbb{N}\):</p>
+                <ul>
+                    <li>1/n > 0 (since n ≥ 1)</li>
+                    <li>Therefore 1 - 1/n < 1</li>
+                </ul>
+                <p>So every element of S is less than 1. <strong>S is bounded above by 1.</strong></p>
+                
+                <p>We claim sup(S) = 1. To prove this, we need to show:</p>
+                <ol>
+                    <li>1 is an upper bound of S</li>
+                    <li>No number less than 1 is an upper bound of S</li>
+                </ol>
+                
+                <p><strong>Part 1:</strong> We showed above that 1 - 1/n < 1 for all \(n \in \mathbb{N}\), so 1 is an upper bound. ✓</p>
+                
+                <p><strong>Part 2:</strong> Let M < 1. We need to find an element of S that exceeds M.</p>
+                <p>We want: \(1 - 1/n > M\)<br>
+                Rearranging: \(1 - M > 1/n\)<br>
+                So: \(n > 1/(1 - M)\)</p>
+                <p>Since 1 - M > 0 (because M < 1), the value 1/(1 - M) is a positive real number.</p>
+                <p>By the Archimedean property, there exists a natural number \(n > 1/(1 - M)\).</p>
+                <p>For this n: \(1 - 1/n > M\)</p>
+                <p>So M is not an upper bound of S. ✓</p>
+                
+                <p><strong>Therefore, sup(S) = 1.</strong></p>
+            </div>
+
+            <div class="solution">
+                <div class="solution-header">Solution (c): Is sup(S) ∈ S?</div>
+                <p>Is 1 ∈ S?</p>
+                <p>For 1 to be in S, we'd need: 1 - 1/n = 1 for some \(n \in \mathbb{N}\)</p>
+                <p>This would require: 1/n = 0</p>
+                <p>But 1/n > 0 for all \(n \in \mathbb{N}\), so there is no natural number n that gives 1 - 1/n = 1.</p>
+                <p><strong>No, sup(S) = 1 is NOT an element of S.</strong></p>
+                
+                <div class="info-box">
+                    <strong>Key Insight:</strong> The set S gets arbitrarily close to 1 but never reaches it. This illustrates:
+                    <ul>
+                        <li>The difference between maximum (largest element in the set) and supremum (least upper bound)</li>
+                        <li>S has no maximum, but it does have a supremum</li>
+                        <li>The supremum of a set need not belong to the set</li>
+                    </ul>
+                    <p>This concept is fundamental to real analysis — limits, continuity, and the completeness axiom all build on understanding suprema.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h2>Summary</h2>
+            
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li>ℝ contains all rationals and irrationals; it has no "gaps"</li>
+                <li>The field properties justify all algebraic manipulation</li>
+                <li>Multiplying/dividing inequalities by negatives reverses the sign</li>
+                <li>Absolute value measures distance; the triangle inequality is fundamental</li>
+                <li>Interval notation: parentheses exclude endpoints, brackets include them</li>
+                <li>Completeness distinguishes ℝ from ℚ — every bounded set has a supremum</li>
+            </ul>
+
+            <h3>Common Mistakes</h3>
+            <ul>
+                <li>Forgetting to flip inequality when multiplying by negative</li>
+                <li>Using brackets with infinity: [3, ∞] is wrong; use [3, ∞)</li>
+                <li>Thinking |a + b| = |a| + |b| (only true when a, b have same sign or one is zero)</li>
+            </ul>
+
+            <h3>What's Next</h3>
+            <p>Lesson M1.2 covers <strong>Algebraic Manipulation and Factoring</strong> — rebuilding fluency with polynomials, fractions, and expressions.</p>
+        </div>
+
+        <div class="lesson-footer">
+            <p>Part of the PhD Qualifying Exam Preparation Series</p>
+            <p>Module M1: Foundations • Lesson 1 of 8</p>
+        </div>
+    </div>
+
+    <script>
+        // Render all math expressions with KaTeX
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

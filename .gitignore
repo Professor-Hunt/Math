@@ -1,0 +1,10 @@
+# Ignore .txt files (working notes, prep files, etc.)
+*.txt
+
+# Ignore planning/prep markdown files
+PhD_Qual_Exam_Master_Plan.md
+PHD*.md
+
+# Keep lesson markdown and HTML files
+!Lesson_*.md
+!lesson_*.html
