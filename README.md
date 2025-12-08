@@ -28,7 +28,7 @@ This repository contains a series of mathematics lessons covering fundamental to
 
 ## 🌐 View Online
 
-Visit the live site: [GitHub Pages URL will be here once deployed]
+**Visit the live site: [https://professor-hunt.github.io/Math/](https://professor-hunt.github.io/Math/)**
 
 ## 🚀 Getting Started
 
@@ -36,7 +36,7 @@ Visit the live site: [GitHub Pages URL will be here once deployed]
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Math.git
+   git clone https://github.com/Professor-Hunt/Math.git
    cd Math
    ```
 
