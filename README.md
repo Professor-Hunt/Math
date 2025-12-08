@@ -26,6 +26,11 @@ This repository contains a series of mathematics lessons covering fundamental to
    - Prerequisites: M1.1
    - Topics: Polynomial arithmetic, factoring techniques, rational expressions, rationalizing denominators
 
+3. **[Lesson M1.3: Equations and Inequalities](lesson_m1_3.html)**
+   - Duration: ~4 hours
+   - Prerequisites: M1.1, M1.2
+   - Topics: Polynomial equations, rational equations, radical equations, absolute value equations, inequalities, sign analysis
+
 ## 🌐 View Online
 
 **Visit the live site: [https://professor-hunt.github.io/Math/](https://professor-hunt.github.io/Math/)**
