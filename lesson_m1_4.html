@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson M1.4: Functions: Definitions and Notation | PhD Qualifying Exam Prep</title>
+
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f4c75;
+            --highlight: #3282b8;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --bg: #fdfefe;
+            --bg-alt: #f8f9fa;
+            --border: #dfe6e9;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --code-bg: #2d3436;
+            --code-text: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', 'Crimson Text', Georgia, serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 18px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            margin: -3rem -2rem 3rem -2rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .lesson-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .lesson-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lesson-meta-item::before {
+            content: "●";
+            color: var(--highlight);
+        }
+
+        /* Navigation */
+        .toc {
+            background: var(--bg-alt);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .toc li {
+            padding: 0.4rem 0;
+        }
+
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--highlight);
+            padding-left: 0.5rem;
+        }
+
+        /* Content boxes */
+        .info-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fdcb6e15 0%, #e1705515 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box::before {
+            content: "⚠️ ";
+            font-size: 1.2em;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #00b89415 0%, #00cec915 100%);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: var(--bg-alt);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Math */
+        .katex {
+            font-size: 1.1em;
+        }
+
+        .katex-display {
+            margin: 2rem 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        /* Problem sections */
+        .problem {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .problem:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .problem-header {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-difficulty {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .difficulty-basic {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+
+        .difficulty-intermediate {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .difficulty-exam {
+            background: #d63031;
+            color: white;
+        }
+
+        .solution {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--border);
+        }
+
+        .solution-header {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        code {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+        }
+
+        /* Summary section */
+        .summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .summary h2 {
+            color: white;
+            border-bottom: 3px solid var(--highlight);
+            margin-top: 0;
+        }
+
+        .summary h3 {
+            color: var(--highlight);
+        }
+
+        .summary ul {
+            margin-left: 1.5rem;
+        }
+
+        .summary table {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .summary th {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .summary td {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .summary tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Footer */
+        .lesson-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .lesson-header {
+                padding: 3rem 1rem;
+                margin: -2rem -1rem 2rem -1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Link styles */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        a:hover {
+            border-bottom-color: var(--highlight);
+        }
+
+        /* Strong emphasis */
+        strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* Section divider */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Pro:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-header">
+            <h1>Lesson M1.4: Functions: Definitions and Notation</h1>
+            <div class="lesson-meta">
+                <div class="lesson-meta-item">Module M1: Foundations</div>
+                <div class="lesson-meta-item">Prerequisites: M1.1–M1.3</div>
+                <div class="lesson-meta-item">Duration: ~3 hours</div>
+            </div>
+        </div>
+        <div class="toc">
+            <h3>Contents</h3>
+            <ul>
+                    <li><a href="#learning-objectives">Learning Objectives</a></li>
+                    <li><a href="#1-what-is-a-function">1. What is a function?</a></li>
+                    <li><a href="#2-domain-and-range">2. Domain and range</a></li>
+                    <li><a href="#3-combining-and-composing-functions">3. Combining and composing functions</a></li>
+                    <li><a href="#4-one-to-one-functions-and-inverses">4. One-to-one functions and inverses</a></li>
+                    <li><a href="#5-transformations-and-simple-models">5. Transformations and simple models</a></li>
+                    <li><a href="#practice-problems">Practice Problems</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#summary">Summary</a></li>
+            </ul>
+        </div>
+        <article class="lesson-content">
+<p><strong>Prerequisites:</strong> Lessons M1.1–M1.3</p>
+<p><strong>Estimated study time:</strong> 3 hours</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Define a function using its domain, codomain, and assignment rule; distinguish the range from the codomain.</li>
+<li>Find natural domains and ranges, and evaluate functions given by formulas or cases.</li>
+<li>Form sums, products, quotients, and compositions while tracking their domains.</li>
+<li>Decide when a function has an inverse and find the inverse with its correct domain and range.</li>
+<li>Describe basic graph transformations and use function notation in simple models.</li>
+</ul>
+<h2 id="1-what-is-a-function">1. What is a function?</h2>
+<p>A <strong>function</strong> \(f:A\to B\) assigns <strong>exactly one</strong> element \(f(x)\in B\) to every input \(x\in A\). The set \(A\) is the <strong>domain</strong>, \(B\) is the <strong>codomain</strong>, and the <strong>range</strong> (or image) is \(f(A)=\{f(x):x\in A\}\subseteq B\). The assignment need not use every value in \(B\).</p>
+<p>For example, \(f:\mathbb R\to\mathbb R\), \(f(x)=x^2\), has range \([0,\infty)\), even though its codomain is all of \(\mathbb R\). A different declaration, \(f:\mathbb R\to[0,\infty)\) with the same rule, has a different codomain. The declared domain matters too: \(x^2\) on \(\mathbb R\) and \(x^2\) on \([0,\infty)\) are different functions, and only the latter has an inverse from its range back to its domain.</p>
+<p>The notation \(f(x)\) means the <strong>output at input \(x\)</strong>. It does not mean \(f\) multiplied by \(x\). To evaluate \(f(a+h)\), substitute the entire expression \(a+h\) for the input.</p>
+<p><strong>Example.</strong> For \(f(x)=x^2-3x\),</p>
+<p>\[\begin{aligned}f(a+h)&amp;=(a+h)^2-3(a+h)\\&amp;=a^2+2ah+h^2\\&amp;\quad-3a-3h.\end{aligned}\]</p>
+<p>This substitution is the starting point for the difference quotient in calculus.</p>
+<h3 id="graphs-and-the-vertical-line-test">Graphs and the vertical line test</h3>
+<p>The graph is \(\{(x,f(x)):x\in A\}\). Every vertical line intersects a function graph <strong>at most once</strong>. An intersection is not required when that \(x\) is outside the domain. The circle \(x^2+y^2=1\) fails this test: for most \(x\in(-1,1)\), there are two \(y\)-values.</p>
+<h2 id="2-domain-and-range">2. Domain and range</h2>
+<p>When a formula is supplied without a stated domain, its <strong>natural real domain</strong> consists of all real inputs for which the formula has a real value. In particular, denominators cannot be zero and even-root radicands must be nonnegative. A stated domain may restrict this further.</p>
+<p><strong>Example: combined restrictions.</strong> For</p>
+<p>\[f(x)=\frac{\sqrt{9-x^2}}{x-1},\]</p>
+<p>the radicand requires \(-3\le x\le3\), and the denominator excludes \(x=1\). Thus the domain is \([-3,1)\cup(1,3]\). Do not cancel or otherwise simplify a formula before recording its original exclusions.</p>
+<p>The <strong>range</strong> answers a different question: which outputs actually occur? For \(f(x)=x^2\) on \([-2,3]\), the minimum is \(0\) at \(x=0\) and the maximum is \(9\) at \(x=3\). Every value between them occurs, so the range is \([0,9]\). The codomain must contain this range; it need not equal it.</p>
+<h3 id="piecewise-functions">Piecewise functions</h3>
+<p>A piecewise rule assigns one expression to each part of the domain. Check the condition <strong>before</strong> evaluating:</p>
+<p>\[p(x)=\begin{cases}x+1,&amp;x&lt;0,\\x^2,&amp;0\le x\le2,\\5,&amp;x&gt;2.\end{cases}\]</p>
+<p>Here \(p(-2)=-1\), \(p(0)=0\), \(p(2)=4\), and \(p(3)=5\). The first branch gives \(( -\infty,1)\), the middle gives \([0,4]\), and the last gives \(\{5\}\). Their union is \(( -\infty,4]\cup\{5\}\). A boundary belongs to the branch whose inequality includes equality.</p>
+<h2 id="3-combining-and-composing-functions">3. Combining and composing functions</h2>
+<p>If \(f\) and \(g\) are real-valued, \((f+g)(x)=f(x)+g(x)\) and \((fg)(x)=f(x)g(x)\) are defined where <strong>both</strong> inputs are allowed. The quotient \((f/g)(x)=f(x)/g(x)\) also requires \(g(x)\ne0\).</p>
+<p>Composition means doing the inner function first:</p>
+<p>\[(f\circ g)(x)=f(g(x)).\]</p>
+<p>Its domain is \(\{x\in\operatorname{dom}(g):g(x)\in\operatorname{dom}(f)\}\). Order matters: generally \(f\circ g\ne g\circ f\).</p>
+<p><strong>Example.</strong> Let \(f(x)=\sqrt{x-1}\), with domain \([1,\infty)\), and \(g(x)=x^2-2\), with domain \(\mathbb R\). Then</p>
+<p>\[\begin{aligned}(f\circ g)(x)&amp;=\sqrt{x^2-3},\\\operatorname{dom}(f\circ g)&amp;=(-\infty,-\sqrt3]\\&amp;\quad\cup[\sqrt3,\infty).\end{aligned}\]</p>
+<p>Conversely, \((g\circ f)(x)=(\sqrt{x-1})^2-2=x-3\), but its domain is still \([1,\infty)\). The simplified rule \(x-3\) does <strong>not</strong> extend this composition to inputs below \(1\).</p>
+<h2 id="4-one-to-one-functions-and-inverses">4. One-to-one functions and inverses</h2>
+<p>A function is <strong>one-to-one</strong> (injective) if \(f(a)=f(b)\) implies \(a=b\). On a graph, every horizontal line then intersects at most once. A function has an inverse \(f^{-1}:f(A)\to A\) precisely when it is one-to-one, if the inverse's domain is taken to be the range of \(f\). To have an inverse defined on the <strong>entire declared codomain</strong> \(B\), \(f:A\to B\) must also be onto \(B\).</p>
+<p>For an invertible function,</p>
+<p>\[\begin{aligned}f^{-1}(f(x))&amp;=x\quad(x\in A),\\f(f^{-1}(y))&amp;=y\quad(y\in f(A)).\end{aligned}\]</p>
+<p>The notation \(f^{-1}\) does <strong>not</strong> mean \(1/f\).</p>
+<p><strong>Example.</strong> If \(f:\mathbb R\to\mathbb R\) is \(f(x)=3x-2\), write \(y=3x-2\) and solve for \(x\): \(x=(y+2)/3\). Thus \(f^{-1}(x)=(x+2)/3\). Substitution in both directions verifies the inverse.</p>
+<p>The function \(x\mapsto x^2\) is not one-to-one on \(\mathbb R\), because \(f(-2)=f(2)\). Restricted to \([0,\infty)\), it is one-to-one with inverse \(x\mapsto\sqrt{x}\) on \([0,\infty)\). <strong>Restricting the domain changes the function.</strong></p>
+<h2 id="5-transformations-and-simple-models">5. Transformations and simple models</h2>
+<p>Starting with \(y=f(x)\):</p>
+<table>
+<thead>
+<tr>
+<th>New rule</th>
+<th>Effect on the graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(f(x)+k\)</td>
+<td>Shift up by \(k\) (down if \(k&lt;0\))</td>
+</tr>
+<tr>
+<td>\(f(x-h)\)</td>
+<td>Shift right by \(h\) (left if \(h&lt;0\))</td>
+</tr>
+<tr>
+<td>\(af(x)\)</td>
+<td>Multiply output heights by \(|a|\); reflect across the horizontal axis if \(a&lt;0\)</td>
+</tr>
+<tr>
+<td>\(f(bx)\)</td>
+<td>Multiply input coordinates by \(1/|b|\); reflect across the vertical axis if \(b&lt;0\), for \(b\ne0\)</td>
+</tr>
+</tbody>
+</table>
+<p>For \(f(x)=|x|\), the graph of \(y=-2f(x+3)+1=-2|x+3|+1\) has vertex \((-3,1)\), opens downward, and has range \(( -\infty,1]\).</p>
+<p>Function notation also keeps a model's units and domain clear. If \(R(q)=50q\) and \(C(q)=120+20q\) are revenue and cost in dollars for \(q\) units, profit is \(P(q)=R(q)-C(q)=30q-120\), for feasible \(q\ge0\) (usually whole units). The break-even input solves \(P(q)=0\), namely \(q=4\).</p>
+<h2 id="practice-problems">Practice Problems</h2>
+<p>Try these before reading the solutions. State domains whenever a function is introduced without one.</p>
+<h3 id="basic">Basic</h3>
+<ol>
+<li>Find the natural real domain of \(f(x)=\dfrac{\sqrt{x+4}}{x-2}\).</li>
+<li>Find the range of \(f(x)=x^2-4\) on the stated domain \([-1,3]\).</li>
+<li>Let \(h(x)=x^2\) for \(x&lt;1\), and \(h(x)=2x+1\) for \(x\ge1\). Find \(h(-2)\), \(h(1)\), and \(h(h(-2))\).</li>
+</ol>
+<h3 id="intermediate">Intermediate</h3>
+<ol>
+<li>Let \(f(x)=\sqrt{x+2}\) and \(g(x)=1/(x-1)\), each on its natural real domain. Find \(f\circ g\) and \(g\circ f\), with the exact domain of each.</li>
+<li>Let \(f(x)=(2x-3)/(x+1)\), \(x\ne-1\). Show that it is one-to-one, find its range and inverse, and verify one composition.</li>
+<li>Explain why \(x^2\) has no inverse on \(\mathbb R\). Restrict its domain to make an inverse, and give that inverse's domain.</li>
+<li>Describe the transformations from \(y=|x|\) to \(y=-2|x+3|+1\). State the new vertex and range.</li>
+</ol>
+<h3 id="exam-level-and-application">Exam-level and application</h3>
+<ol>
+<li>Suppose \(f:A\to B\) and \(g:B\to C\), and \(g\circ f\) is one-to-one. Prove that \(f\) is one-to-one. Give an example where \(g\circ f\) is one-to-one but \(g\) is not one-to-one on all of \(B\).</li>
+<li>For \(R(q)=50q\) and \(C(q)=120+20q\), find the profit function, profit at \(q=10\), and the break-even quantity. State a reasonable domain for \(q\).</li>
+</ol>
+<h2 id="solutions">Solutions</h2>
+<h3 id="1-natural-domain">1. Natural domain</h3>
+<p>The square root needs \(x+4\ge0\), so \(x\ge-4\). The denominator needs \(x\ne2\). The domain is \([-4,2)\cup(2,\infty)\).</p>
+<h3 id="2-range-on-a-restricted-interval">2. Range on a restricted interval</h3>
+<p>The minimum of \(x^2-4\) is \(-4\) at \(x=0\). On \([-1,3]\), the largest \(x^2\) is \(9\) at \(x=3\), giving \(5\). Continuity fills all intermediate values, so the range is \([-4,5]\).</p>
+<h3 id="3-piecewise-evaluation">3. Piecewise evaluation</h3>
+<p>Because \(-2&lt;1\), \(h(-2)=(-2)^2=4\). Because \(1\ge1\), \(h(1)=2(1)+1=3\). Finally \(h(h(-2))=h(4)=2(4)+1=9\).</p>
+<h3 id="4-composition-domains">4. Composition domains</h3>
+<p>\[(f\circ g)(x)=\sqrt{\frac1{x-1}+2}=\sqrt{\frac{2x-1}{x-1}}.\]</p>
+<p>Require \(x\ne1\) and \((2x-1)/(x-1)\ge0\). A sign chart at \(1/2\) and \(1\) gives \(( -\infty,1/2]\cup(1,\infty)\).</p>
+<p>\[(g\circ f)(x)=\frac1{\sqrt{x+2}-1}.\]</p>
+<p>Require \(x\ge-2\) and \(\sqrt{x+2}\ne1\), which excludes \(x=-1\). Its domain is \([-2,-1)\cup(-1,\infty)\).</p>
+<h3 id="5-a-rational-inverse">5. A rational inverse</h3>
+<p>If \(f(a)=f(b)\), cross multiplication is valid for \(a,b\ne-1\):</p>
+<p>\[(2a-3)(b+1)=(2b-3)(a+1).\]</p>
+<p>Expanding and rearranging gives \(5a=5b\), so \(f\) is one-to-one. Solving \(y=(2x-3)/(x+1)\) gives \(x=(y+3)/(2-y)\). The value \(y=2\) is impossible, because \(2(x+1)=2x-3\) would imply \(2=-3\). Every other real \(y\) yields an allowed \(x\), so the range is \(\mathbb R\setminus\{2\}\) and</p>
+<p>\[f^{-1}(y)=\frac{y+3}{2-y},\qquad y\ne2.\]</p>
+<p>Checking, \(f(f^{-1}(y))=(2(y+3)-3(2-y))/((y+3)+(2-y))=5y/5=y\) for \(y\ne2\).</p>
+<h3 id="6-domain-restriction">6. Domain restriction</h3>
+<p>On \(\mathbb R\), \((-2)^2=2^2\), so the rule is not one-to-one. One choice is \(f:[0,\infty)\to[0,\infty)\), \(f(x)=x^2\). Its inverse is \(f^{-1}(y)=\sqrt y\), with domain \([0,\infty)\).</p>
+<h3 id="7-transformations">7. Transformations</h3>
+<p>The \(x+3\) shifts left 3. The negative sign reflects across the horizontal axis, the factor 2 stretches vertical distances by 2, and the \(+1\) shifts up 1. The vertex is \((-3,1)\) and the range is \(( -\infty,1]\).</p>
+<h3 id="8-what-injectivity-of-a-composition-implies">8. What injectivity of a composition implies</h3>
+<p>If \(f(a)=f(b)\), applying \(g\) gives \(g(f(a))=g(f(b))\). Injectivity of \(g\circ f\) then gives \(a=b\). Thus \(f\) is one-to-one.</p>
+<p>For the converse claim about \(g\), take \(A=[0,\infty)\), \(B=C=\mathbb R\), \(f(x)=x^2\), and \(g(t)=t^2\). Then \((g\circ f)(x)=x^4\) is one-to-one for \(x\ge0\), while \(g(-1)=g(1)\). Thus \(g\) need only be one-to-one <strong>on the image of \(f\)</strong>.</p>
+<h3 id="9-revenue-cost-and-profit">9. Revenue, cost, and profit</h3>
+<p>\[\begin{aligned}P(q)&amp;=R(q)-C(q)\\&amp;=50q-(120+20q)\\&amp;=30q-120.\end{aligned}\]</p>
+<p>Hence \(P(10)=180\) dollars, and \(P(q)=0\) when \(q=4\). A reasonable domain is \(q\in\{0,1,2,\ldots\}\) if units are indivisible.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A function has a declared domain and codomain; its range is the set of outputs it actually attains.</li>
+<li>Evaluation and composition require checking which inputs are allowed. Simplifying a formula does not erase restrictions inherited from the original function.</li>
+<li>The inverse reverses inputs and outputs and exists on the range when the function is one-to-one.</li>
+<li>Horizontal changes act inside the input expression; vertical changes act on the output.</li>
+</ul>
+<p><strong>Common mistakes:</strong> Confusing range with codomain; treating \(f^{-1}\) as a reciprocal; composing in the wrong order; losing domain exclusions after algebraic simplification; assigning a boundary point to the wrong piece.</p>
+<p><strong>What's next:</strong> Lesson M1.5 studies polynomial, rational, and root functions in more detail, including their graph behavior.</p>
+        </article>
+        <div class="lesson-footer">
+            <p>Part of the PhD Qualifying Exam Preparation Series</p>
+            <p>Module M1: Foundations · Lesson 4 of 8</p>
+        </div>
+    </div>
+    <script>
+        // Render all math expressions with KaTeX
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

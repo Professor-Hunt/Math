@@ -31,6 +31,11 @@ This repository contains a series of mathematics lessons covering fundamental to
    - Prerequisites: M1.1, M1.2
    - Topics: Polynomial equations, rational equations, radical equations, absolute value equations, inequalities, sign analysis
 
+4. **[Lesson M1.4: Functions: Definitions and Notation](lesson_m1_4.html)**
+   - Duration: ~3 hours
+   - Prerequisites: M1.1–M1.3
+   - Topics: Functions, domain and range, composition, inverses, transformations
+
 ## 🌐 View Online
 
 **Visit the live site: [https://professor-hunt.github.io/Math/](https://professor-hunt.github.io/Math/)**
@@ -91,7 +96,7 @@ This content is provided for educational purposes. Feel free to use these materi
 
 ## 🎯 Roadmap
 
-- [ ] Complete Module M1: Foundations (Lessons M1.3-M1.8)
+- [ ] Complete Module M1: Foundations (Lessons M1.5-M1.8)
 - [ ] Add Module M2: Functions and Graphs
 - [ ] Add Module M3: Calculus I
 - [ ] Add Module M4: Calculus II
