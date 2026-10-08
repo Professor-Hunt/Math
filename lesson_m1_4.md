@@ -12,9 +12,23 @@
 - Decide when a function has an inverse and find the inverse with its correct domain and range.
 - Describe basic graph transformations and use function notation in simple models.
 
+## High-school level — Inputs, outputs, and graphs
+
+A function is a rule with one output for each allowed input. Tables, formulas, and graphs are three ways to communicate a rule. Begin by asking what inputs are allowed and what outputs actually appear; later levels make those questions precise enough for proofs and models.
+
 ## 1. What is a function?
 
 A **function** \(f:A\to B\) assigns **exactly one** element \(f(x)\in B\) to every input \(x\in A\). The set \(A\) is the **domain**, \(B\) is the **codomain**, and the **range** (or image) is \(f(A)=\{f(x):x\in A\}\subseteq B\). The assignment need not use every value in \(B\).
+
+<details class="math-explainer">
+<summary>Explain the function arrow</summary>
+<p><strong>Read the whole expression:</strong> f maps the set A into the set B: every input from A receives exactly one output in B.</p>
+<dl><dt>f</dt><dd>Name of the function, or assignment rule.</dd>
+<dt>A, domain</dt><dd>The set of allowed inputs.</dd>
+<dt>→, &#x27;maps to&#x27;</dt><dd>The rule sends inputs on the left to outputs on the right.</dd>
+<dt>B, codomain</dt><dd>The declared set that contains every output; some values may never occur.</dd></dl>
+<p><strong>Example:</strong> If f(x)=x² sends real inputs to real outputs, f(−2)=4 and f(2)=4; negative outputs never occur.</p>
+</details>
 
 For example, \(f:\mathbb R\to\mathbb R\), \(f(x)=x^2\), has range \([0,\infty)\), even though its codomain is all of \(\mathbb R\). A different declaration, \(f:\mathbb R\to[0,\infty)\) with the same rule, has a different codomain. The declared domain matters too: \(x^2\) on \(\mathbb R\) and \(x^2\) on \([0,\infty)\) are different functions, and only the latter has an inverse from its range back to its domain.
 
@@ -42,6 +56,16 @@ the radicand requires \(-3\le x\le3\), and the denominator excludes \(x=1\). Thu
 
 The **range** answers a different question: which outputs actually occur? For \(f(x)=x^2\) on \([-2,3]\), the minimum is \(0\) at \(x=0\) and the maximum is \(9\) at \(x=3\). Every value between them occurs, so the range is \([0,9]\). The codomain must contain this range; it need not equal it.
 
+<details class="math-explainer">
+<summary>Explain the image or range of a function</summary>
+<p><strong>Read the whole expression:</strong> f of A is the set of all outputs f of x as x runs through the allowed inputs A.</p>
+<dl><dt>f(A), &#x27;image of A&#x27;</dt><dd>Outputs actually attained by f on A.</dd>
+<dt>{ : }, set-builder braces</dt><dd>Collect all values satisfying the stated rule.</dd>
+<dt>∈, &#x27;belongs to&#x27;</dt><dd>The input x must be an allowed member of A.</dd>
+<dt>⊆, &#x27;is contained in&#x27;</dt><dd>Every actual output lies in the codomain B.</dd></dl>
+<p><strong>Example:</strong> For f(x)=x² on A=[−2,3], f(A)=[0,9], even if the codomain is all real numbers.</p>
+</details>
+
 ### Piecewise functions
 
 A piecewise rule assigns one expression to each part of the domain. Check the condition **before** evaluating:
@@ -50,37 +74,7 @@ A piecewise rule assigns one expression to each part of the domain. Check the co
 
 Here \(p(-2)=-1\), \(p(0)=0\), \(p(2)=4\), and \(p(3)=5\). The first branch gives \(( -\infty,1)\), the middle gives \([0,4]\), and the last gives \(\{5\}\). Their union is \(( -\infty,4]\cup\{5\}\). A boundary belongs to the branch whose inequality includes equality.
 
-## 3. Combining and composing functions
-
-If \(f\) and \(g\) are real-valued, \((f+g)(x)=f(x)+g(x)\) and \((fg)(x)=f(x)g(x)\) are defined where **both** inputs are allowed. The quotient \((f/g)(x)=f(x)/g(x)\) also requires \(g(x)\ne0\).
-
-Composition means doing the inner function first:
-
-\[(f\circ g)(x)=f(g(x)).\]
-
-Its domain is \(\{x\in\operatorname{dom}(g):g(x)\in\operatorname{dom}(f)\}\). Order matters: generally \(f\circ g\ne g\circ f\).
-
-**Example.** Let \(f(x)=\sqrt{x-1}\), with domain \([1,\infty)\), and \(g(x)=x^2-2\), with domain \(\mathbb R\). Then
-
-\[\begin{aligned}(f\circ g)(x)&=\sqrt{x^2-3},\\\operatorname{dom}(f\circ g)&=(-\infty,-\sqrt3]\\&\quad\cup[\sqrt3,\infty).\end{aligned}\]
-
-Conversely, \((g\circ f)(x)=(\sqrt{x-1})^2-2=x-3\), but its domain is still \([1,\infty)\). The simplified rule \(x-3\) does **not** extend this composition to inputs below \(1\).
-
-## 4. One-to-one functions and inverses
-
-A function is **one-to-one** (injective) if \(f(a)=f(b)\) implies \(a=b\). On a graph, every horizontal line then intersects at most once. A function has an inverse \(f^{-1}:f(A)\to A\) precisely when it is one-to-one, if the inverse's domain is taken to be the range of \(f\). To have an inverse defined on the **entire declared codomain** \(B\), \(f:A\to B\) must also be onto \(B\).
-
-For an invertible function,
-
-\[\begin{aligned}f^{-1}(f(x))&=x\quad(x\in A),\\f(f^{-1}(y))&=y\quad(y\in f(A)).\end{aligned}\]
-
-The notation \(f^{-1}\) does **not** mean \(1/f\).
-
-**Example.** If \(f:\mathbb R\to\mathbb R\) is \(f(x)=3x-2\), write \(y=3x-2\) and solve for \(x\): \(x=(y+2)/3\). Thus \(f^{-1}(x)=(x+2)/3\). Substitution in both directions verifies the inverse.
-
-The function \(x\mapsto x^2\) is not one-to-one on \(\mathbb R\), because \(f(-2)=f(2)\). Restricted to \([0,\infty)\), it is one-to-one with inverse \(x\mapsto\sqrt{x}\) on \([0,\infty)\). **Restricting the domain changes the function.**
-
-## 5. Transformations and simple models
+## 3. Transformations and simple models
 
 Starting with \(y=f(x)\):
 
@@ -93,7 +87,96 @@ Starting with \(y=f(x)\):
 
 For \(f(x)=|x|\), the graph of \(y=-2f(x+3)+1=-2|x+3|+1\) has vertex \((-3,1)\), opens downward, and has range \(( -\infty,1]\).
 
+<details class="math-explainer">
+<summary>Explain this graph transformation</summary>
+<p><strong>Read the whole expression:</strong> Take the absolute value of x plus three, double it, reflect it downward, and move it up one.</p>
+<dl><dt>x+3</dt><dd>Shifts the basic absolute-value graph three units left.</dd>
+<dt>| |</dt><dd>Measures distance from the shifted vertex.</dd>
+<dt>−2</dt><dd>Doubles vertical distances and reflects them across the horizontal axis.</dd>
+<dt>+1</dt><dd>Moves the resulting graph up one unit.</dd></dl>
+<p><strong>Example:</strong> At x=−3, the absolute-value part is zero, so the new vertex is (−3,1).</p>
+</details>
+
 Function notation also keeps a model's units and domain clear. If \(R(q)=50q\) and \(C(q)=120+20q\) are revenue and cost in dollars for \(q\) units, profit is \(P(q)=R(q)-C(q)=30q-120\), for feasible \(q\ge0\) (usually whole units). The break-even input solves \(P(q)=0\), namely \(q=4\).
+
+
+## Undergraduate level — Combining rules with domains
+
+Algebraically combining functions is only valid on inputs accepted by all relevant rules. Composition also asks whether the inner output is an allowed outer input. This domain bookkeeping is a prerequisite for calculus and analysis.
+
+## 4. Combining and composing functions
+
+If \(f\) and \(g\) are real-valued, \((f+g)(x)=f(x)+g(x)\) and \((fg)(x)=f(x)g(x)\) are defined where **both** inputs are allowed. The quotient \((f/g)(x)=f(x)/g(x)\) also requires \(g(x)\ne0\).
+
+Composition means doing the inner function first:
+
+\[(f\circ g)(x)=f(g(x)).\]
+
+<details class="math-explainer">
+<summary>Explain function composition</summary>
+<p><strong>Read the whole expression:</strong> f circle g at x means apply g to x first, then apply f to that result.</p>
+<dl><dt>∘, &#x27;composed with&#x27;</dt><dd>Orders two rules; the right-hand rule acts first.</dd>
+<dt>g(x)</dt><dd>Inner output that becomes the next input.</dd>
+<dt>f(g(x))</dt><dd>Final output, defined only when g(x) is in f&#x27;s domain.</dd></dl>
+<p><strong>Example:</strong> If g(x)=x+1 and f(t)=t², then (f∘g)(2)=f(3)=9, while (g∘f)(2)=g(4)=5.</p>
+</details>
+
+Its domain is \(\{x\in\operatorname{dom}(g):g(x)\in\operatorname{dom}(f)\}\). Order matters: generally \(f\circ g\ne g\circ f\).
+
+**Example.** Let \(f(x)=\sqrt{x-1}\), with domain \([1,\infty)\), and \(g(x)=x^2-2\), with domain \(\mathbb R\). Then
+
+\[\begin{aligned}(f\circ g)(x)&=\sqrt{x^2-3},\\\operatorname{dom}(f\circ g)&=(-\infty,-\sqrt3]\\&\quad\cup[\sqrt3,\infty).\end{aligned}\]
+
+Conversely, \((g\circ f)(x)=(\sqrt{x-1})^2-2=x-3\), but its domain is still \([1,\infty)\). The simplified rule \(x-3\) does **not** extend this composition to inputs below \(1\).
+
+## Master's level — Inverses and proof of uniqueness
+
+An inverse is a function only if each attained output points back to one input. Distinguish this one-to-one condition from being *onto* a declared codomain. To prove a composition is one-to-one, begin with equality of outputs and work back to equality of inputs; Problem 8 gives a careful example. A horizontal-line picture helps intuition, but the definition supplies the proof.
+
+## 5. One-to-one functions and inverses
+
+A function is **one-to-one** (injective) if \(f(a)=f(b)\) implies \(a=b\). On a graph, every horizontal line then intersects at most once. A function has an inverse \(f^{-1}:f(A)\to A\) precisely when it is one-to-one, if the inverse's domain is taken to be the range of \(f\). To have an inverse defined on the **entire declared codomain** \(B\), \(f:A\to B\) must also be onto \(B\).
+
+For an invertible function,
+
+\[\begin{aligned}f^{-1}(f(x))&=x\quad(x\in A),\\f(f^{-1}(y))&=y\quad(y\in f(A)).\end{aligned}\]
+
+The notation \(f^{-1}\) does **not** mean \(1/f\).
+
+<details class="math-explainer">
+<summary>Explain inverse-function notation</summary>
+<p><strong>Read the whole expression:</strong> f inverse takes an output of f and returns the input that produced it.</p>
+<dl><dt>f⁻¹</dt><dd>Inverse function; the superscript does not mean reciprocal here.</dd>
+<dt>f(A)</dt><dd>Domain of the inverse: outputs actually attained by f.</dd>
+<dt>A</dt><dd>Codomain of the inverse: the original input set.</dd>
+<dt>one-to-one</dt><dd>Different original inputs must have different outputs.</dd></dl>
+<p><strong>Example:</strong> If f(x)=3x−2, the output 10 came from x=4, so f⁻¹(10)=4; 1/f(10) would instead be 1/28.</p>
+</details>
+
+**Example.** If \(f:\mathbb R\to\mathbb R\) is \(f(x)=3x-2\), write \(y=3x-2\) and solve for \(x\): \(x=(y+2)/3\). Thus \(f^{-1}(x)=(x+2)/3\). Substitution in both directions verifies the inverse.
+
+The function \(x\mapsto x^2\) is not one-to-one on \(\mathbb R\), because \(f(-2)=f(2)\). Restricted to \([0,\infty)\), it is one-to-one with inverse \(x\mapsto\sqrt{x}\) on \([0,\infty)\). **Restricting the domain changes the function.**
+
+## PhD-level connection — Identifiability and stable inversion
+
+**Prerequisite bridge.** In an inverse problem, an observed output y=f(x) is used to recover an unknown input x. If f is not one-to-one, two inputs can produce the same observation, so unique recovery is impossible: this is a failure of *identifiability*. Even if f is one-to-one, small output errors may cause large input errors.
+
+Suppose there is a constant c>0 such that |f(x)−f(y)|≥c|x−y| for every two allowed inputs. Then f is one-to-one, and its inverse on the range obeys
+
+\[|f^{-1}(u)-f^{-1}(v)|\le \frac1c|u-v|.\]
+
+To prove this, write u=f(x), v=f(y) and rearrange the lower bound. The inverse is then *Lipschitz*: output errors of size ε cause input errors of at most ε/c. This condition is sufficient, not necessary, for a continuous inverse. For f(x)=x³ on [−1,1], an inverse exists, but no positive c works near zero; Problem 10 investigates the resulting sensitivity. A full study of inverse problems adds noise models, regularization, and multivariable maps.
+
+<details class="math-explainer">
+<summary>Explain the inverse-stability bound</summary>
+<p><strong>Read the whole expression:</strong> The distance between recovered inputs is at most one over c times the distance between their observed outputs.</p>
+<dl><dt>f⁻¹</dt><dd>The inverse on outputs that f actually attains.</dd>
+<dt>u, v</dt><dd>Two observed outputs in the range of f.</dd>
+<dt>| |</dt><dd>Distance between two real numbers.</dd>
+<dt>c&gt;0</dt><dd>A single positive lower-separation constant for all input pairs.</dd>
+<dt>≤</dt><dd>The recovered-input distance cannot exceed this bound.</dd></dl>
+<p><strong>Example:</strong> For f(x)=2x+1, c=2 works exactly; if two outputs differ by 0.1, their inputs differ by 0.05.</p>
+</details>
 
 ## Practice Problems
 
@@ -116,6 +199,8 @@ Try these before reading the solutions. State domains whenever a function is int
 
 8. Suppose \(f:A\to B\) and \(g:B\to C\), and \(g\circ f\) is one-to-one. Prove that \(f\) is one-to-one. Give an example where \(g\circ f\) is one-to-one but \(g\) is not one-to-one on all of \(B\).
 9. For \(R(q)=50q\) and \(C(q)=120+20q\), find the profit function, profit at \(q=10\), and the break-even quantity. State a reasonable domain for \(q\).
+
+**PhD-level practice, Problem 10.** On [−1,1], let f(x)=x³. Prove that f is one-to-one, then show that no c>0 can satisfy |f(x)−f(y)|≥c|x−y| for all x,y in the interval. Explain what this says about recovery near zero, and compare f(x)=2x+1.
 
 ## Solutions
 
@@ -172,6 +257,10 @@ For the converse claim about \(g\), take \(A=[0,\infty)\), \(B=C=\mathbb R\), \(
 \[\begin{aligned}P(q)&=R(q)-C(q)\\&=50q-(120+20q)\\&=30q-120.\end{aligned}\]
 
 Hence \(P(10)=180\) dollars, and \(P(q)=0\) when \(q=4\). A reasonable domain is \(q\in\{0,1,2,\ldots\}\) if units are indivisible.
+
+### 10. Invertible can still be sensitive
+
+The cube function is strictly increasing, hence one-to-one. If a uniform c>0 existed, set y=0 and x=t>0. The inequality would say t³≥ct, or t²≥c, for every sufficiently small t; choosing 0<t<√c contradicts it. Thus its inverse, the cube-root function, has no uniform Lipschitz bound near zero. A small output perturbation around zero can produce a disproportionately large input change. By contrast, for g(x)=2x+1, |g(x)−g(y)|=2|x−y|, so c=2 and inverse errors are exactly half the output errors. This is a statement about mathematical sensitivity, not about the quality of a particular numerical algorithm.
 
 ## Summary
 

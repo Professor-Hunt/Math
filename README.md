@@ -1,6 +1,6 @@
 # PhD Qualifying Exam - Mathematics Prep
 
-A comprehensive collection of mathematics lessons designed for PhD qualifying exam preparation. Study on the go with beautifully formatted, mobile-responsive lessons.
+A growing, freely readable route from familiar mathematics to ideas used in PhD qualifying exams. The current four lessons cover foundations; the planned advanced modules remain future work.
 
 ## 🎓 About
 
@@ -10,7 +10,11 @@ This repository contains a series of mathematics lessons covering fundamental to
 - **Mobile-responsive design** for studying anywhere
 - **Detailed examples and solutions**
 - **Practice problems** ranging from basic to exam-level
+- **Four depth levels in every topic**: high-school, undergraduate, master's, and PhD-level connections, with prerequisites explained at the point of use
+- **Expandable symbol explanations**: read-aloud wording, meaning in context, and a concrete example, available by touch or keyboard
 - **Professional typography** optimized for reading
+
+The level names describe the depth of the mathematics, not a reader's ability or the difficulty of the prose. A short bridge to an advanced result is an invitation to study its prerequisites, not a substitute for a full course.
 
 ## 📚 Current Lessons
 
@@ -59,8 +63,8 @@ Simply visit the GitHub Pages URL from any mobile browser. The lessons are fully
 ## 📱 Features
 
 - **Mobile-First Design**: Optimized for reading on phones and tablets
-- **No Build Process**: Pure HTML/CSS/JS - just open and study
-- **Offline Capable**: Download and study without internet
+- **Static published pages**: Open the HTML directly; no server or runtime build is needed
+- **Plain-language fallback**: Expandable explanations remain readable when the KaTeX CDN is unavailable; formatted mathematics and web fonts require a connection unless cached
 - **Beautiful Math**: KaTeX renders mathematical notation perfectly
 - **Dark/Light Mode**: Comfortable reading in any environment (coming soon)
 
@@ -81,6 +85,9 @@ Each lesson includes:
 - **Practice Problems**: Basic, intermediate, and exam-level challenges
 - **Full Solutions**: Detailed step-by-step solutions
 - **Summary**: Key takeaways and common mistakes
+- **Symbol notes**: Native expandable controls beside selected expressions, with context-specific meanings and a full plain-language reading
+
+The maintained source for M1.1 is `lesson_m1_1.md`; the original `.txt` working note is retained. M1.2–M1.4 have Markdown sources beside their HTML. To regenerate all four HTML lessons after editing the sources, install `Markdown==3.8.2` and run `python tools/render_lessons.py`. The published site itself stays static.
 
 ## 🤝 Contributing
 

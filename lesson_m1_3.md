@@ -15,6 +15,10 @@
 
 ---
 
+## High-school level — Solving and checking
+
+An equation asks which inputs make two expressions equal. An inequality asks which inputs make one expression larger or smaller. For every method below, record where the original expressions are defined and substitute candidate answers back into the original statement.
+
 ## 1. Polynomial Equations
 
 A **polynomial equation** has the form $p(x) = 0$ where $p(x)$ is a polynomial.
@@ -39,6 +43,16 @@ $3x = 12 \Rightarrow x = 4$
 3. **Completing the Square**
 
 **The Discriminant:** $\Delta = b^2 - 4ac$
+
+<details class="math-explainer">
+<summary>Explain the discriminant</summary>
+<p><strong>Read the whole expression:</strong> Delta equals b squared minus four times a times c.</p>
+<dl><dt>Δ, &#x27;delta&#x27;</dt><dd>Name for the number that determines how many real quadratic roots occur.</dd>
+<dt>b²</dt><dd>The middle coefficient multiplied by itself.</dd>
+<dt>a, b, c</dt><dd>Coefficients in ax²+bx+c with a nonzero.</dd>
+<dt>−</dt><dd>Subtract four times the leading and constant coefficients.</dd></dl>
+<p><strong>Example:</strong> For 2x²−5x−3, a=2, b=−5, c=−3, so Δ=25+24=49; there are two real roots.</p>
+</details>
 
 | Discriminant | Nature of Roots |
 |--------------|-----------------|
@@ -243,6 +257,15 @@ $x = 14$
 
 **Solution:** $A = k$ or $A = -k$
 
+<details class="math-explainer">
+<summary>Explain the two absolute-value cases</summary>
+<p><strong>Read the whole expression:</strong> If the distance of A from zero is k, then A is k or negative k.</p>
+<dl><dt>|A|</dt><dd>Distance of the value A from zero.</dd>
+<dt>k</dt><dd>A nonnegative target distance.</dd>
+<dt>or</dt><dd>Either equality may supply a solution; check both.</dd></dl>
+<p><strong>Example:</strong> |x−2|=3 means x−2=3 or x−2=−3, giving x=5 or x=−1.</p>
+</details>
+
 **Example:** Solve $|3x - 5| = 7$
 
 $3x - 5 = 7$ or $3x - 5 = -7$
@@ -307,6 +330,10 @@ Second inequality: $2x > 6 \Rightarrow x > 3$
 
 ---
 
+## Undergraduate level — Sign analysis and domains
+
+An interval sign chart converts a global inequality into finitely many local checks. Polynomial signs can change only at roots, because polynomials are continuous; a rational expression can also change behavior at excluded denominator zeros. Never include a point where the original expression is undefined.
+
 ## 6. Polynomial and Rational Inequalities
 
 ### 6.1 Sign Analysis Method
@@ -328,6 +355,15 @@ Second inequality: $2x > 6 \Rightarrow x > 3$
 **Step 1:** Factor: $(x - 5)(x + 1) > 0$
 
 **Step 2:** Critical points: $x = -1$ and $x = 5$
+
+<details class="math-explainer">
+<summary>Explain a sign-chart interval</summary>
+<p><strong>Read the whole expression:</strong> The roots negative one and five split the number line into three intervals, on each of which the polynomial keeps one sign.</p>
+<dl><dt>root or zero</dt><dd>An input making the polynomial equal zero.</dd>
+<dt>(−∞,−1)</dt><dd>All real inputs smaller than negative one; the endpoint is excluded.</dd>
+<dt>∪, &#x27;union&#x27;</dt><dd>Join intervals that both satisfy the requested sign.</dd></dl>
+<p><strong>Example:</strong> For (x−5)(x+1)&gt;0, test x=−2, 0, and 6; the first and last intervals work.</p>
+</details>
 
 **Step 3:** Sign chart:
 
@@ -396,6 +432,48 @@ Domain restrictions: $x \neq -3, 3$
 
 ---
 
+## Master's level — Existence, uniqueness, and iteration
+
+**Prerequisite bridge.** A continuous function has no jumps. The Intermediate Value Theorem (IVT) says that if a continuous function has opposite signs at the ends of an interval, it has a root inside. IVT proves **existence**, not uniqueness. To prove uniqueness, add a separate fact, such as strict monotonicity: a strictly decreasing function cannot cross zero twice.
+
+Newton's method uses a tangent line: xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ), provided f′(xₙ) is nonzero. Smoothness and a simple root give *local* convergence only when the starting point is sufficiently close. A specified starting point needs a further argument; Problem 7 gives one using convexity on an interval. Convex means the graph lies above each tangent line, a fact reflected by f″ ≥ 0 when the second derivative exists.
+
+<details class="math-explainer">
+<summary>Explain the Newton update in this problem</summary>
+<p><strong>Read the whole expression:</strong> The next estimate equals the current estimate minus the function value divided by its slope there.</p>
+<dl><dt>xₙ</dt><dd>Current estimate of a root.</dd>
+<dt>f(xₙ)</dt><dd>Current error in the equation f(x)=0, measured as a function value.</dd>
+<dt>f′(xₙ), &#x27;f prime&#x27;</dt><dd>Slope of f at the current estimate; it must be nonzero.</dd>
+<dt>xₙ₊₁</dt><dd>Next estimate obtained from the tangent&#x27;s zero.</dd></dl>
+<p><strong>Example:</strong> For f(x)=x²−2 and x₀=1, the slope is 2 and the value is −1, so x₁=1−(−1)/2=1.5.</p>
+</details>
+
+## PhD-level connection — Contraction and quadratic forms
+
+**Prerequisite bridge.** A *fixed point* of a map T is an input x* with T(x*)=x*. On a closed interval, if T maps the interval into itself and shrinks every distance by one common factor q<1, repeated application converges to a unique fixed point. The self-map condition matters: a small derivative bound alone does not keep iterates in the interval. In Problem 9, T(x)=cos x maps [0,1] into [cos 1,1]⊂[0,1], and |T′(x)|≤sin 1<1 there. Every solution in [0,π/2] is at most 1, so uniqueness on [0,1] also gives uniqueness on the larger interval.
+
+<details class="math-explainer">
+<summary>Explain the fixed-point condition</summary>
+<p><strong>Read the whole expression:</strong> A fixed point x star is unchanged by T, and a contraction makes output distances smaller than input distances.</p>
+<dl><dt>T(x*)=x*</dt><dd>Applying T to x* returns the same point.</dd>
+<dt>T([0,1])⊂[0,1]</dt><dd>Every input in the interval stays inside it after one step.</dd>
+<dt>|T′(x)|≤q&lt;1</dt><dd>A uniform slope bound that makes T shrink distances on this interval.</dd>
+<dt>q</dt><dd>One shrinking factor valid for every pair of inputs, not a factor chosen separately at each point.</dd></dl>
+<p><strong>Example:</strong> For T(x)=cos x on [0,1], q=sin 1 works; the fixed point is approximately 0.739.</p>
+</details>
+
+A **quadratic form** in two variables is homogeneous: Q(u,v)=au²+buv+cv². It can be written as [u v]A[u v]ᵀ for the symmetric matrix A with rows (a,b/2) and (b/2,c). The one-variable polynomial f(x)=ax²+bx+c is the *slice* Q(x,1), not itself a quadratic form. Under a>0, the condition b²<4ac is equivalent both to f(x)>0 for every real x and to Q(u,v)>0 for every nonzero pair (u,v). Completing the square proves the latter: Q(u,v)=a(u+bv/(2a))²+(c−b²/(4a))v².
+
+<details class="math-explainer">
+<summary>Explain positive definiteness here</summary>
+<p><strong>Read the whole expression:</strong> Q is positive definite when it gives a positive value for every nonzero pair of inputs.</p>
+<dl><dt>Q(u,v)</dt><dd>A homogeneous degree-two expression in two inputs.</dd>
+<dt>(u,v)≠(0,0)</dt><dd>At least one input is nonzero.</dd>
+<dt>b²&lt;4ac</dt><dd>The condition making both squared terms in the completed-square form positive in the required sense.</dd>
+<dt>f(x)=Q(x,1)</dt><dd>The familiar parabola is a one-dimensional slice of Q.</dd></dl>
+<p><strong>Example:</strong> If a=c=1 and b=0, Q(u,v)=u²+v² is positive for every nonzero pair; f(x)=x²+1 is positive for every real x.</p>
+</details>
+
 ## Practice Problems
 
 ### Basic
@@ -424,7 +502,7 @@ Let $f(x) = x^3 - 3x + 1$.
 
 (b) Prove that exactly one root lies in the interval $(0, 1)$.
 
-(c) Using the Intermediate Value Theorem reasoning, explain why Newton's method starting from $x_0 = 0.5$ would converge to this root.
+(c) Show that Newton's method starting from $x_0 = 0.5$ converges to this root. Give a reason beyond IVT for this specific starting point.
 
 **Problem 8:** *(Linear Algebra Connection)*
 
@@ -695,9 +773,9 @@ $\lim_{x \to -\infty} f(x) = -\infty$ and $\lim_{x \to +\infty} f(x) = +\infty$
 **Step 5:** Apply the Intermediate Value Theorem.
 
 Since $f$ is continuous:
-- $f(-\infty) = -\infty < 0$ and $f(-1) = 3 > 0$ → root in $(-\infty, -1)$
+- the limit of $f(x)$ as $x\to-\infty$ is negative infinity, so some finite left endpoint has $f(x)<0$, while $f(-1)=3>0$ → root in $(-\infty, -1)$
 - $f(-1) = 3 > 0$ and $f(1) = -1 < 0$ → root in $(-1, 1)$
-- $f(1) = -1 < 0$ and $f(+\infty) = +\infty$ → root in $(1, +\infty)$
+- $f(1)=-1<0$, while $f(x)\to+\infty$ as $x\to+\infty$, so some finite right endpoint has $f(x)>0$ → root in $(1, +\infty)$
 
 Since a cubic has at most 3 real roots, **$f$ has exactly three real roots.** ∎
 
@@ -719,24 +797,11 @@ Combined: **Exactly one root in $(0, 1)$.** ∎
 
 **(c) Newton's method convergence from $x_0 = 0.5$.**
 
-**Solution:**
+Newton's update is $x_{n+1}=x_n-f(x_n)/f'(x_n)$. Here $f(1/2)=-3/8$ and $f'(1/2)=-9/4$, so $x_1=1/2-1/6=1/3$. Also $f(1/3)=1/27>0$ and $f(1/2)<0$, so the unique root $r$ lies in $(1/3,1/2)$.
 
-Newton's method: $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$
+On $[1/3,r]$, $f'(x)=3x^2-3<0$ and $f''(x)=6x>0$: the function is decreasing and convex. If $x<r$, then $f(x)>0$, and the Newton update $N(x)=x-f(x)/f'(x)$ is greater than $x$. Convexity puts the graph above its tangent at $x$, so $0=f(r)\ge f(x)+f'(x)(r-x)$. Since $f'(x)<0$, rearranging gives $N(x)\le r$. Thus, starting at $x_1=1/3$, the iterates increase but stay at or below $r$. They converge to a limit $L$; continuity of $N$ on this interval gives $L=N(L)$, hence $f(L)=0$ and $L=r$. The first two steps are $x_1=1/3$ and $x_2=25/72\approx0.34722$.
 
-At $x_0 = 0.5$:
-- $f(0.5) = 0.125 - 1.5 + 1 = -0.375$
-- $f'(0.5) = 3(0.25) - 3 = -2.25$
-- Newton iterate: $x_1 = 0.5 - \frac{-0.375}{-2.25} = 0.5 - 0.167 = 0.333...$
-
-Since:
-1. $f$ is smooth (polynomial)
-2. $f'(x) \neq 0$ on $(0, 1)$ (we showed $f' < 0$ there)
-3. The root is simple (not repeated)
-4. $x_0 = 0.5$ is close to the root
-
-Newton's method converges quadratically to the unique root in $(0, 1)$.
-
-The theoretical justification: If $x^*$ is a simple root and $f''$ is continuous near $x^*$, then for $x_0$ sufficiently close to $x^*$, Newton's method converges with order 2. ∎
+IVT established the root's existence; monotonicity and convexity justify convergence from this particular starting point. The root is simple, so the eventual convergence rate is quadratic.
 
 ---
 
@@ -792,6 +857,8 @@ $g(\pi/2) = \pi/2 - \cos(\pi/2) = \pi/2 - 0 = \pi/2 > 0$
 
 Since $g$ is continuous on $[0, \pi/2]$ and $g(0) < 0 < g(\pi/2)$, by the Intermediate Value Theorem, there exists $c \in (0, \pi/2)$ such that $g(c) = 0$, i.e., $c = \cos(c)$. ∎
 
+**Uniqueness on $[0,\pi/2]$.** The function $g(x)=x-\cos x$ has derivative $g'(x)=1+\sin x>0$ there, so it is strictly increasing and has at most one root. Together with IVT, it has exactly one.
+
 **(b) Show the iteration is a contraction on $[0, 1]$.**
 
 **Solution:**
@@ -812,6 +879,8 @@ $|\phi'(x)| = \sin(x) \leq \sin(1) \approx 0.841 < 1$ for all $x \in [0, 1]$
 
 Therefore, $\phi$ is a contraction with Lipschitz constant $L = \sin(1) < 1$. ∎
 
+The iteration also stays inside the interval: $\cos([0,1])=[\cos 1,1]\subset[0,1]$. Thus the contraction theorem applies on $[0,1]$.
+
 **(c) Linear convergence and $\cos'(x^*)$.**
 
 **Solution:**
@@ -827,7 +896,7 @@ $|\cos'(x^*)| = |\sin(x^*)| = \sin(0.739) \approx 0.673$
 This means:
 - Each iteration reduces the error by a factor of approximately $0.673$
 - The convergence is **linear** (not quadratic like Newton's method)
-- After $n$ iterations, error $\approx (0.673)^n \cdot |\text{initial error}|$
+- For sufficiently late iterations, each additional step multiplies the error by approximately $0.673$; the simple $(0.673)^n$ estimate is asymptotic, not an exact bound from an arbitrary initial guess
 
 **Interpretation:** Since $\cos'(x^*) \neq 0$, we get only linear convergence. If we wanted faster convergence, we could use Newton's method on $g(x) = x - \cos(x)$, which would give quadratic convergence. ∎
 
@@ -861,9 +930,7 @@ $$b^2 < 4ac$$
 
 **Answer:** $f(x) = ax^2 + bx + c > 0$ for all $x \in \mathbb{R}$ if and only if $a > 0$ and $b^2 < 4ac$.
 
-**Connection to Analysis:** This is equivalent to the condition for the quadratic form $Q(x) = ax^2 + bx + c$ to be **positive definite**. In linear algebra, for a $2 \times 2$ symmetric matrix $A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}$, positive definiteness requires:
-- $a > 0$ (first leading principal minor)
-- $ac - (b/2)^2 > 0$ (determinant), which gives $4ac > b^2$
+**Connection to Linear Algebra:** The expression $f(x)=ax^2+bx+c$ is not a quadratic form because it includes lower-degree terms. Define the homogeneous quadratic form $Q(u,v)=au^2+buv+cv^2$ instead; then $f(x)=Q(x,1)$. The symmetric matrix of $Q$ is $A=\begin{pmatrix}a&b/2\\b/2&c\end{pmatrix}$. Completing the square gives $Q(u,v)=a(u+bv/(2a))^2+(c-b^2/(4a))v^2$. Hence, under $a>0$, $Q$ is positive definite exactly when $b^2<4ac$, the same condition found for $f(x)>0$ on all of $\mathbb R$.
 
 This generalizes to the Sylvester criterion for positive definiteness of $n \times n$ matrices. ∎
 

@@ -13,13 +13,17 @@
 
 ---
 
+## High-school level — Expressions and factoring
+
+An expression names a value; an equation asserts two values are equal. In this section, every manipulation is reversible algebra unless a denominator is zero. Work each example before looking at the next line, then check by expanding or substitution.
+
 ## 1. Polynomial Arithmetic
 
 A **polynomial** in variable x is an expression of the form:
 
 $$p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$$
 
-where $a_0, a_1, \ldots, a_n$ are real coefficients and $n$ is a non-negative integer (the **degree** if $a_n \neq 0$).
+Here $n$ is a positive integer, the coefficients $a_0, a_1, \ldots, a_n$ are real, and the **degree** is $n$ when $a_n\neq0$. A nonzero constant $p(x)=a_0$ is also a polynomial, of degree zero. The zero polynomial's degree is usually left undefined.
 
 ### 1.1 Addition and Subtraction
 
@@ -34,6 +38,16 @@ Group by degree:
 - Constants: $5 + (-7) = -2$
 
 **Result:** $4x^3 + 4x^2 - 2x - 2$
+
+<details class="math-explainer">
+<summary>Explain polynomial powers and coefficients</summary>
+<p><strong>Read the whole expression:</strong> Four x cubed plus four x squared minus two x minus two.</p>
+<dl><dt>x³, &#x27;x cubed&#x27;</dt><dd>x multiplied by itself three times.</dd>
+<dt>4, coefficient</dt><dd>The multiplier of x³ or x² in this expression.</dd>
+<dt>−, minus</dt><dd>Subtract the following term.</dd>
+<dt>like terms</dt><dd>Terms with the same power of x; only these can be combined directly.</dd></dl>
+<p><strong>Example:</strong> At x = 2, 4x³ is 4 times 8, or 32; 4x² is 4 times 4, or 16.</p>
+</details>
 
 ### 1.2 Multiplication
 
@@ -68,34 +82,13 @@ $(x + 2)^3 = x^3 + 3(x^2)(2) + 3(x)(4) + 8 = x^3 + 6x^2 + 12x + 8$
 
 **Long Division:** Used when dividing by polynomials of degree ≥ 2 or when you need both quotient and remainder.
 
-**Example:** Divide $x^3 - 2x^2 + 4$ by $x - 2$
+**Example:** Divide $x^3 - 2x^2 + 4$ by $x - 2$.
 
-```
-        x² + 0x + 2
-       ─────────────
-x - 2 │ x³ - 2x² + 0x + 4
-        x³ - 2x²
-        ─────────
-             0x² + 0x
-             0x² - 0x
-             ─────────
-                  0x + 4
-                  0x - 0
-                  ───────
-                       4 + 4 = 8
-```
+Write the missing coefficient as $0x$. The leading term $x^3$ divided by the leading term $x$ gives $x^2$. Multiply back: $x^2(x-2)=x^3-2x^2$. Subtracting this product from $x^3-2x^2+0x+4$ leaves the constant $4$. Its degree is less than the divisor's degree, so division stops:
 
-Wait, let me redo this more carefully:
+$$x^3-2x^2+4=(x-2)x^2+4.$$
 
-$$\frac{x^3 - 2x^2 + 4}{x - 2}$$
-
-Step 1: $x^3 ÷ x = x^2$. Multiply: $x^2(x-2) = x^3 - 2x^2$. Subtract: $0$.
-
-Step 2: Bring down: $0x$. $0 ÷ x = 0$. Multiply: $0$. Subtract: $0$.
-
-Step 3: Bring down: $4$. $4 ÷ x = ?$ — can't divide evenly.
-
-**Result:** $x^2 + 0x + 0 + \frac{4}{x-2} = x^2 + \frac{4}{x-2}$
+The quotient is $x^2$ and the remainder is $4$. Multiplying the divisor by the quotient and adding the remainder checks the result.
 
 **Synthetic Division:** A shortcut when dividing by $(x - c)$.
 
@@ -220,9 +213,23 @@ Factor further: $(x + 2)(x - 2)(x + 1)(x - 1)$
 
 ---
 
+## Undergraduate level — Domains and rational identities
+
+Cancellation is an identity only on the common domain of the original expressions. A cancelled factor does not restore an excluded input. This is the bridge from manipulation of symbols to reasoning about functions.
+
 ## 3. Rational Expressions
 
 A **rational expression** is a ratio of two polynomials: $\frac{P(x)}{Q(x)}$ where $Q(x) \neq 0$.
+
+<details class="math-explainer">
+<summary>Explain a rational expression and its restriction</summary>
+<p><strong>Read the whole expression:</strong> P of x divided by Q of x, provided Q of x is not zero.</p>
+<dl><dt>P(x), numerator</dt><dd>A polynomial supplying the top value.</dd>
+<dt>Q(x), denominator</dt><dd>A polynomial supplying the bottom value.</dd>
+<dt>≠, &#x27;is not equal to&#x27;</dt><dd>Excludes inputs where division would be undefined.</dd>
+<dt>x</dt><dd>The input to both polynomials in this expression.</dd></dl>
+<p><strong>Example:</strong> For (x+3)/(x−2), the input x=2 is excluded even if later algebra seems to cancel a factor.</p>
+</details>
 
 ### 3.1 Domain Restrictions
 
@@ -321,6 +328,26 @@ This form allows us to evaluate the limit as $h \to 0$.
 
 ---
 
+## Master's level — The division theorem and proof habits
+
+**Prerequisite bridge.** The *degree* of a nonzero polynomial is its highest exponent with nonzero coefficient. For real polynomials P and D with D not the zero polynomial, long division gives a quotient Q and remainder R such that
+
+\[P=DQ+R,\qquad R=0\ \text{or}\ \deg R<\deg D.\]
+
+Why are Q and R unique? Suppose P = DQ₁ + R₁ = DQ₂ + R₂ with both remainders smaller than D. Then D(Q₁ − Q₂) = R₂ − R₁. If Q₁ − Q₂ were nonzero, the left side would have degree at least deg D, while the right side would have degree below deg D. That is impossible. Thus Q₁ = Q₂ and R₁ = R₂. Existence comes from repeatedly cancelling the leading term, lowering the degree each time.
+
+<details class="math-explainer">
+<summary>Explain quotient and remainder notation</summary>
+<p><strong>Read the whole expression:</strong> P equals D times Q plus R, where R is zero or has smaller degree than D.</p>
+<dl><dt>P</dt><dd>Polynomial being divided.</dd>
+<dt>D</dt><dd>Nonzero divisor polynomial.</dd>
+<dt>Q</dt><dd>Quotient polynomial.</dd>
+<dt>R</dt><dd>Remainder polynomial.</dd>
+<dt>deg, &#x27;degree&#x27;</dt><dd>Highest exponent with nonzero coefficient.</dd>
+<dt>&lt;</dt><dd>The remainder&#x27;s degree is strictly smaller.</dd></dl>
+<p><strong>Example:</strong> x³−2x²+4 = (x−2)x²+4: P is the cubic, D is x−2, Q is x², and R is 4.</p>
+</details>
+
 ## 5. Algebraic Structures in Analysis
 
 These manipulations appear repeatedly in qualifying exams:
@@ -358,6 +385,29 @@ Half of 6 is 3; square it: $3^2 = 9$
 $x^2 + 6x + 2 = (x^2 + 6x + 9) - 9 + 2 = (x + 3)^2 - 7$
 
 ---
+
+## PhD-level connection — Algebra and numerical sensitivity
+
+**Prerequisite bridge.** Error analysis asks how much an output can move when its input moves. The factorization in Problem 9 is useful beyond finding roots. For an integer n ≥ 1 and real x,y,
+
+\[x^n-y^n=(x-y)\sum_{k=0}^{n-1}x^{n-1-k}y^k.\]
+
+If |x|,|y| ≤ M for some M>0, each of the n terms in the sum has absolute value at most Mⁿ⁻¹. The triangle inequality therefore gives
+
+\[|x^n-y^n|\le nM^{n-1}|x-y|.\]
+
+This is a finite-error bound with stated assumptions, not just an infinitesimal approximation. For nonzero x, the *local relative condition number* of F(x)=xⁿ is |xF′(x)/F(x)|=n: a small relative input error is amplified by about n in the output. Condition number describes the mathematical problem; it does not by itself certify that a particular algorithm is stable.
+
+<details class="math-explainer">
+<summary>Explain the power-map error bound</summary>
+<p><strong>Read the whole expression:</strong> The difference between x to the nth power and y to the nth power is at most n times M to the n minus one times the distance between x and y.</p>
+<dl><dt>| |, absolute value</dt><dd>Measures size or distance without sign.</dd>
+<dt>n</dt><dd>A positive whole-number exponent.</dd>
+<dt>M</dt><dd>A shared upper bound for the sizes of x and y.</dd>
+<dt>≤</dt><dd>An upper bound, including equality.</dd>
+<dt>x−y</dt><dd>The input perturbation whose effect we measure.</dd></dl>
+<p><strong>Example:</strong> For n=2 and |x|,|y|≤3, the output difference is at most 6|x−y|.</p>
+</details>
 
 ## Practice Problems
 
@@ -417,6 +467,8 @@ Simplify the following expression completely:
 $$\frac{x^4 - 16}{x^3 + 8} \cdot \frac{x^2 - 2x + 4}{x^2 + 4} \div \frac{x - 2}{x + 2}$$
 
 ---
+
+**PhD-level practice, Problem 11.** Let F(x)=x⁵ and suppose |x|,|y|≤2. Prove |F(x)−F(y)|≤80|x−y|. Then find the local relative condition number for x≠0 and explain what each statement does and does not say.
 
 ## Solutions
 
@@ -542,7 +594,7 @@ $$\frac{1}{\sqrt{x} + \sqrt{a}}$$
 
 **Answer:** $\frac{1}{\sqrt{x} + \sqrt{a}}$, for $x \neq a$
 
-**Note:** This is the simplified form of $\frac{f(x) - f(a)}{x - a}$ where $f(x) = \sqrt{x}$. Taking $x \to a$ gives $f'(a) = \frac{1}{2\sqrt{a}}$.
+**Note:** This is the simplified form of $\frac{f(x) - f(a)}{x - a}$ where $f(x) = \sqrt{x}$. For $a>0$, taking $x \to a$ gives $f'(a) = \frac{1}{2\sqrt{a}}$; at $a=0$ this finite derivative formula does not apply.
 
 ---
 
@@ -604,7 +656,7 @@ $\lambda_1 \cdot \lambda_2 = 7 \cdot 2 = 14 = \det(A)$ ✓
 
 Let $S = a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1}$
 
-This is a geometric series with first term $a^{n-1}$, ratio $\frac{b}{a}$, and $n$ terms.
+When $a\ne0$ this may be viewed as a geometric series with ratio $b/a$; the expansion proof below also works when $a=0$.
 
 Compute $(a - b) \cdot S$:
 
@@ -670,6 +722,10 @@ $$= x + 2$$
 **Verification:** The original expression is undefined at $x = 2$ (from $x - 2$ in denominator after converting division) and at $x = -2$ (from $x^3 + 8 = 0$). These restrictions carry through to the simplified answer.
 
 ---
+
+### Problem 11 (PhD-level): A power-map bound
+
+Factor x⁵−y⁵=(x−y)(x⁴+x³y+x²y²+xy³+y⁴). Each of the five terms in parentheses has absolute value at most 2⁴=16. The triangle inequality gives |x⁵−y⁵|≤5·16|x−y|=80|x−y|. For x≠0, F′(x)=5x⁴, so |xF′(x)/F(x)|=5. The first statement is a finite absolute bound on [−2,2]; the second is a local relative sensitivity at a nonzero input. Neither is a claim about roundoff error in a particular program.
 
 ## Summary
 
